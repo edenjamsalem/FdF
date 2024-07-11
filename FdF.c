@@ -1,42 +1,76 @@
-#include "mlx_linux/mlx.h"
+#include "FdF.h"
 
-# define WIN_LEN 1200
-# define WIN_HEIGHT 800
-
-typedef struct	s_data
+void run_graphic(t_mlx_data mlx, t_img img)
 {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}				t_data;
+	int		x;
+	int		y;
+	int		colour;
+	
+	colour = 0xFF00FF00; 
+	y = 0;
+	while (y < WIN_HEIGHT)
+	{	
+		x = 0;
+		while (x < WIN_LEN)
+			my_mlx_pixel_put(&img, x++, y, colour);
+		y++;
+	}
+	mlx_put_image_to_window(mlx.ptr, mlx.win, img.ptr, 0, 0);
+}
 
-void	my_mlx_pixel_put(t_data *img, int x, int y, int colour)
+int	key_event(int keysym, t_mlx_data *mlx)
 {
-	char	*dst;
+	if (keysym == ESC_KEY)
+	{
+		mlx_destroy_image(mlx->ptr, mlx->img.ptr);
+		mlx_destroy_window(mlx->ptr, mlx->win);
+		mlx_destroy_display(mlx->ptr);
+		free(mlx->ptr);
+		exit(EXIT_SUCCESS);
+	}
+	return (0);
+}
 
-	dst = img->addr + ((y * img->line_len) + (x * (img->bpp / 8)));
-	*((unsigned int *)dst) = colour;
+int	initialize_img(t_mlx_data *mlx)
+{
+	mlx->img.ptr = mlx_new_image(mlx->ptr, WIN_LEN, WIN_HEIGHT);
+	if (!mlx->img.ptr)
+	{
+		mlx_destroy_window(mlx->ptr, mlx->win);
+		mlx_destroy_display(mlx->ptr);
+		free(mlx->ptr);
+		return (0);
+	}
+	mlx->img.addr = mlx_get_data_addr(mlx->img.ptr, &mlx->img.bpp, \
+							&mlx->img.line_len, &mlx->img.endian);
+	if (!mlx->img.addr)
+	{
+		free(mlx->img.ptr);
+		mlx_destroy_window(mlx->ptr, mlx->win);
+		mlx_destroy_display(mlx->ptr);
+		free(mlx->ptr);
+		return (0);
+	}
+	return (1);
 }
 
 int	main(void)
 {
-	void	*mlx;
-	void	*window;
-	t_data	img;
-	int		x;
-	int		y;
+	t_mlx_data	mlx;
 
-	mlx = mlx_init();
-	window = mlx_new_window(mlx, WIN_LEN, WIN_HEIGHT, "FdF");
-	img.img = mlx_new_image(mlx, WIN_LEN, WIN_HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len, &img.endian);
-
-	x = 0;
-	y = 10;
-	while (x < WIN_LEN)	
-		my_mlx_pixel_put(&img, x++, y, 0x000000FF);
-	mlx_put_image_to_window(mlx, window, img.img, 0, 0);
-	mlx_loop(mlx);
+	mlx.ptr = mlx_init();
+	if (!mlx.ptr)
+		return (1);
+	mlx.win = mlx_new_window(mlx.ptr, WIN_LEN, WIN_HEIGHT, "FdF");
+	if (!mlx.win)
+	{
+		mlx_destroy_display(mlx.ptr);
+		free(mlx.ptr);
+		return (1);
+	}
+	if (!initialize_img(&mlx))
+		return (1);
+	run_graphic(mlx, mlx.img);
+	mlx_key_hook(mlx.win, key_event, &mlx);
+	mlx_loop(mlx.ptr);	
 }

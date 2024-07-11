@@ -18,7 +18,7 @@ OBJDIR = ./build
 OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 
 LIBMLXDIR = mlx_linux
-LIBMLX = $(LIBMLXDIR)/libmlx.a
+LIBMLX = $(LIBMLXDIR)/libmlx_Linux.a
 
 SRCS = FdF.c
 
