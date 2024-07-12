@@ -25,7 +25,8 @@ LIBFT = $(LIBFTDIR)/libft.a
 
 SRCS =	FdF.c \
 		utils.c \
-		events.c
+		events.c \
+		draw_line.c
 
 all: $(OBJDIR) $(NAME) $(LIBMLX) $(LIBFT)
 
