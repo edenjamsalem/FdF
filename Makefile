@@ -20,15 +20,20 @@ OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
 LIBMLXDIR = mlx_linux
 LIBMLX = $(LIBMLXDIR)/libmlx_Linux.a
 
-SRCS = FdF.c
+LIBFTDIR = ../libft
+LIBFT = $(LIBFTDIR)/libft.a
 
-all: $(OBJDIR) $(NAME) $(LIBMLX)
+SRCS =	FdF.c \
+		utils.c \
+		events.c
+
+all: $(OBJDIR) $(NAME) $(LIBMLX) $(LIBFT)
 
 $(OBJDIR)/%.o: %.c
 	cc $(CFLAGS) -I/usr/include -Imlx_linux -c $< -o $@
 
-$(NAME): $(LIBMLX) $(OBJDIR) $(OBJS)
-	cc $(CFLAGS) $(OBJS) $(LIBMLX) -lXext -lX11 -lm -lz -o $@
+$(NAME): $(LIBMLX) $(LIBFT) $(OBJDIR) $(OBJS)
+	cc $(CFLAGS) $(OBJS) $(LIBMLX) $(LIBFT) -lXext -lX11 -lm -lz -o $@
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
@@ -36,10 +41,15 @@ $(OBJDIR):
 $(LIBMLX):
 	make -C $(LIBMLXDIR) all
 
+$(LIBFT):
+	make -C $(LIBFTDIR) all
+
 clean:
+	make -C $(LIBFTDIR) clean
 	rm -fr $(OBJDIR)
 
 fclean: clean
+	make -C $(LIBFTDIR) fclean
 	rm -fr $(NAME)
 
 re: fclean all

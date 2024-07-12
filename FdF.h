@@ -1,4 +1,5 @@
 #include "mlx_linux/mlx.h"
+#include "../libft/libft.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -49,3 +50,11 @@ typedef struct	s_coord
 	int	x;
 	int	y;
 }				t_coord;
+
+int		initialize_img(t_mlx_data *mlx);
+
+int		key_event(int keysym, t_mlx_data *mlx);
+
+char	*find_offset(int x, int y, t_img *img);
+
+void	my_mlx_pixel_put(t_img *img, t_coord coord, int colour);
