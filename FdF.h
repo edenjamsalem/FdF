@@ -2,6 +2,8 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+
 
 //	WINDOW SIZE
 # define WIN_LEN 1200
@@ -35,17 +37,15 @@ typedef struct	s_img
 	int		endian;
 }				t_img;
 
-void	my_mlx_pixel_put(t_img *img, int x, int y, int colour)
-{
-	char	*dst;
-
-	dst = img->addr + ((y * img->line_len) + (x * (img->bpp / 8)));
-	*((unsigned int *)dst) = colour;
-}
-
 typedef struct	s_mlx_data
 {
 	void	*ptr;
 	void	*win;
 	t_img	img;
 }				t_mlx_data;
+
+typedef struct	s_coord
+{
+	int	x;
+	int	y;
+}				t_coord;

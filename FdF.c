@@ -1,5 +1,5 @@
 #include "FdF.h"
-
+/*
 void run_graphic(t_mlx_data mlx, t_img img)
 {
 	int		x;
@@ -12,11 +12,56 @@ void run_graphic(t_mlx_data mlx, t_img img)
 	{	
 		x = 0;
 		while (x < WIN_LEN)
-			my_mlx_pixel_put(&img, x++, y, colour);
+			my_mlx_pixel_put(&img, colour);
 		y++;
 	}
 	mlx_put_image_to_window(mlx.ptr, mlx.win, img.ptr, 0, 0);
 }
+*/
+char *find_offset(int x, int y, t_img *img)
+{
+	return (img->addr + ((y * img->line_len) + (x * (img->bpp / 8))));
+}
+
+void	my_mlx_pixel_put(t_img *img, t_coord coord, int colour)
+{
+	char	*dst;
+
+	dst = find_offset(coord.x, coord.y, img);
+	*((unsigned int *)dst) = colour;
+}
+
+
+void	draw_line(t_mlx_data *mlx, t_coord start, t_coord end)
+{
+	int		gradient;
+	int		colour;
+	int		i;
+	t_coord	line;
+
+	gradient = (end.y - start.y) / (end.x - start.x);
+	colour = 0xFFFFFFFF;
+	line.x = start.x;
+	line.y = start.y;
+	while (line.x < end.x && line.y < end.y)
+	{
+		i = 0;
+		while (i < gradient)
+		{
+			my_mlx_pixel_put(&mlx->img, line, colour);
+			line.y++;
+			i++;
+		}
+		line.x++;
+	}
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
+}
+/*
+void	generate_grid(t_mlx_data mlx)
+{
+
+}
+*/
 
 int	key_event(int keysym, t_mlx_data *mlx)
 {
@@ -57,6 +102,8 @@ int	initialize_img(t_mlx_data *mlx)
 int	main(void)
 {
 	t_mlx_data	mlx;
+	t_coord		start;
+	t_coord		end;
 
 	mlx.ptr = mlx_init();
 	if (!mlx.ptr)
@@ -70,7 +117,14 @@ int	main(void)
 	}
 	if (!initialize_img(&mlx))
 		return (1);
-	run_graphic(mlx, mlx.img);
+//	run_graphic(mlx, mlx.img);
+	start.x = 150;
+	start.y = 100;
+	end.x = 300;
+	end.y = 300;
+	draw_line(&mlx, start, end);
+//	generate_grid(mlx);
 	mlx_key_hook(mlx.win, key_event, &mlx);
 	mlx_loop(mlx.ptr);	
 }
+/* condition */
