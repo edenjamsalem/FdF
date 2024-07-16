@@ -9,7 +9,7 @@ void colour_background(t_img img, int colour)
 	{	
 		coord.x = 0;
 		while (coord.x < WIN_LEN)
-			my_mlx_pixel_put(&img, coord, colour);
+			my_mlx_pixel_put(&img, &coord, colour);
 		coord.y++;
 	}
 }
@@ -34,10 +34,10 @@ int	main(void)
 		return (1);
 //	colour_background(mlx.img, 0xFFFF0000); // not working !
 	start.x = 0;
-	start.y = 10;
+	start.y = 150;
 	end.x = WIN_LEN - 1;
 	end.y = 0;
-	draw_line(&mlx.img, start, end, 0xFFFFFFFF);
+	draw_line(&mlx.img, &start, &end, 0xFFFFFFFF);
 	mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img.ptr, 0, 0);
 	mlx_key_hook(mlx.win, key_event, &mlx);
 	mlx_loop(mlx.ptr);	

@@ -57,8 +57,6 @@ int		key_event(int keysym, t_mlx_data *mlx);
 
 char	*find_offset(int x, int y, t_img *img);
 
-void	my_mlx_pixel_put(t_img *img, t_coord coord, int colour);
+void	my_mlx_pixel_put(t_img *img, t_coord *coord, int colour);
 
-void	draw_line(t_img *img, t_coord start, t_coord end, int colour);
-
-int		gradient_shallow(t_coord start, t_coord end);
+void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour);
