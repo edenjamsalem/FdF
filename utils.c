@@ -1,6 +1,6 @@
 #include "FdF.h"
 
-int	initialize_img(t_mlx_data *mlx)
+int	init_img(t_mlx_data *mlx)
 {
 	mlx->img.ptr = mlx_new_image(mlx->ptr, WIN_LEN, WIN_HEIGHT);
 	if (!mlx->img.ptr)
@@ -53,7 +53,29 @@ void	free_file(char ***file_elements)
 	free(file_elements);
 }
 
-void	print_file(char ***file_elements, t_grid *grid)
+char	***parse_file(int fd)
+{
+	int		i;
+	char	*line;
+	char 	***file_elements;
+
+	i = 0;
+	file_elements = malloc(sizeof(char *) * 100); // Make this dynamic !
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		line[ft_strlen(line) - 1] = '\0';
+		file_elements[i] = ft_split(line, ' ');
+		free(line);
+		i++;
+	}
+	file_elements[i] = NULL;
+	return (file_elements); 
+}
+
+void	print_file(char ***file_elements, t_grid_data *grid)
 {
 	int			i;
 	int			j;
@@ -69,4 +91,43 @@ void	print_file(char ***file_elements, t_grid *grid)
 	}
 	ft_printf("grid len = %d\n", grid->len);
 	ft_printf("grid width = %d\n", grid->width);
+}
+
+int	init_grid_coords(t_grid_data *grid)
+{
+	int 	i;
+	int 	j;
+	t_coord	*coord;
+	
+	grid->coords = malloc(sizeof(t_coord **) * grid->width);
+	if (!grid->coords)
+		return (0);
+	i = 0;
+	while (i < grid->width)
+	{
+		grid->coords[i] = malloc(sizeof(t_coord *) * grid->len);
+		if (!grid->coords[i])
+			return (0);
+		j = 0;
+		while (j < grid->len)
+		{
+			coord = malloc(sizeof(coord));
+			coord->x = grid->start.x + (grid->box_width * j);
+			coord->y = grid->start.y + (grid->box_len * i);
+			grid->coords[i][j++] = coord;
+		}
+		i++;
+	}
+	return (1);
+}
+
+void	init_grid_data(t_grid_data *grid, char ***file_elements)
+{
+	grid->width = ft_2darr_len((void *)(file_elements)); 
+	grid->len = ft_2darr_len((void *)(file_elements[0]));
+	grid->box_len = ((WIN_LEN / 2) / grid->len);
+	grid->box_width = ((WIN_LEN / 2) / grid->len);
+	grid->start.x = ((WIN_LEN / 2) - (0.5 * grid->len * grid->box_len));
+	grid->start.y = ((WIN_HEIGHT / 2) - (0.5 * grid->width * grid->box_width));
+	init_grid_coords(grid);
 }

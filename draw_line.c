@@ -18,7 +18,7 @@ static void	draw_line_up(t_img *img, t_coord *start, t_coord *end, int colour)
 		draw_vertical_line(img, end, start, colour);
 	else
 	{
-		gradient = (float)((end->y - start->y) / (end->x - start->x));
+		gradient = (float)((end->y - start->y) / (end->x - start->x)); // might need to use fabsf()
 		i = gradient;
 		while (start->x <= end->x && start->y >= end->y)
 		{
