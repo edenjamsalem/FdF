@@ -12,17 +12,13 @@ static void	draw_vertical_line(t_img *img, t_coord *start, t_coord *end, int col
 static void	draw_line_up(t_img *img, t_coord *start, t_coord *end, int colour)
 {
 	float		gradient;
-	float		dx;
-	float		dy;
 	float		i;
 
-	dx = (float)(end->x - start->x);
-	dy = (float)(end->y - start->y);
-	if (dx == 0)
+	if (end->x - start->x == 0)
 		draw_vertical_line(img, end, start, colour);
 	else
 	{
-		gradient = dy / dx;
+		gradient = (float)((end->y - start->y) / (end->x - start->x));
 		i = gradient;
 		while (start->x <= end->x && start->y >= end->y)
 		{
@@ -42,17 +38,13 @@ static void	draw_line_up(t_img *img, t_coord *start, t_coord *end, int colour)
 static void	draw_line_down(t_img *img, t_coord *start, t_coord *end, int colour)
 {
 	float		gradient;
-	float		dx;
-	float		dy;
 	float		i;
 
-	dx = (float)(end->x - start->x);
-	dy = (float)(end->y - start->y);
-	if (dx == 0)
+	if (end->x - start->x == 0)
 		draw_vertical_line(img, start, end, colour);
 	else
 	{
-		gradient = dy / dx;
+		gradient = (float)((end->y - start->y) / (end->x - start->x));
 		i = gradient;
 		while (start->x <= end->x && start->y <= end->y)
 		{

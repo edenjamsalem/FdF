@@ -26,8 +26,8 @@ void	initialize_grid(t_grid *grid, char ***file_elements)
 {
 	grid->width = ft_2darr_len((void *)(file_elements)); 
 	grid->len = ft_2darr_len((void *)(file_elements[0]));
-	grid->box_len = 50;
-	grid->box_width = 50;
+	grid->box_len = (WIN_LEN / 2) / grid->len;
+	grid->box_width = grid->box_len;
 	grid->start.x = (WIN_LEN / 2) - (0.5 * grid->len * grid->box_len);
 	grid->start.y = (WIN_HEIGHT / 2) - (0.5 * grid->width * grid->box_width);
 }
@@ -78,7 +78,6 @@ void	draw_vertical_lines(t_img *img, t_grid *grid)
 		}
 		i++;
 	}
-
 }
 
 void	draw_grid(t_img *img, t_grid *grid/* char ***file_elements*/)
