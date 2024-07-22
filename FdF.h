@@ -77,4 +77,3 @@ int		close_window(t_mlx_data *mlx);
 void	free_file(char ***file_elements);
 
 void	print_file(char ***file_elements, t_grid *grid);
-
