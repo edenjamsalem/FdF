@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 		free(mlx.ptr);
 		return (1);
 	}
-	if (!init_img(&mlx))
+	if (!init_img(&mlx.img, &mlx))
 		return (1);
 	fd = open(argv[1], O_RDONLY);
 	mlx.file_elements = parse_file(fd);
@@ -40,7 +40,6 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img.ptr, 0, 0);
 
 //	mlx_hook(&mlx.win, DESTROY_EVT, STRUCT_NOTIFY_MSK, close_window, &mlx); // NOT WORKING
-	mlx_key_hook(mlx.win, key_event, &mlx);
-	mlx_key_hook(mlx.win, key_event, &mlx);
+	mlx_hook(mlx.win, KEY_PRS_EVT, KEY_PRS_MSK, key_event, &mlx);
 	mlx_loop(mlx.ptr);	
 }

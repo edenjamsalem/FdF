@@ -27,7 +27,9 @@ SRCS =	FdF.c \
 		utils.c \
 		events.c \
 		draw_line.c \
-		draw_grid.c
+		draw_grid.c \
+		init_fns.c \
+		translate_fns.c
 
 all: $(OBJDIR) $(NAME) $(LIBMLX) $(LIBFT)
 

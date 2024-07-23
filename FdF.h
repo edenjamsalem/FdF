@@ -73,7 +73,6 @@ typedef struct	s_mlx_data
 	t_grid_data	grid;
 }				t_mlx_data;
 
-int		init_img(t_mlx_data *mlx);
 
 int		key_event(int keysym, t_mlx_data *mlx);
 
@@ -89,11 +88,22 @@ void	free_file(char ***file_elements);
 
 void	print_file(char ***file_elements, t_grid_data *grid);
 
-void	init_grid_data(t_grid_data *grid, char ***file_elements);
-
-void	init_grid_coords(t_grid_data *grid);
-
 void	draw_grid(t_img *img, t_grid_data *grid, int colour);
 
 char	***parse_file(int fd);
 
+int 	init_mlx_data(t_mlx_data *mlx);
+
+int		init_img(t_img *img, t_mlx_data *mlx);
+
+int		init_grid_coords(t_grid_data *grid);
+
+int		init_grid_data(t_grid_data *grid, char ***file_elements);
+
+void	shift_left(t_mlx_data *mlx);
+
+void	shift_right(t_mlx_data *mlx);
+
+void	shift_up(t_mlx_data *mlx);
+
+void	shift_down(t_mlx_data *mlx);

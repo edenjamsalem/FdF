@@ -1,10 +1,18 @@
 #include "FdF.h"
 
+static bool within_screen(int x, int y)
+{
+	if (x > 0 && x < WIN_LEN && y > 0 && y < WIN_HEIGHT)
+		return (true);
+	return (false);
+}
+
 static void	draw_vertical_line(t_img *img, t_coord *start, t_coord *end, int colour)
 {
 	while (start->y <= end->y)
 	{
-		my_mlx_pixel_put(img, start, colour);
+		if (within_screen(start->x, start->y))
+			my_mlx_pixel_put(img, start, colour);
 		start->y++;
 	}
 }
@@ -24,11 +32,13 @@ static void	draw_line_up(t_img *img, t_coord *start, t_coord *end, int colour)
 		{
 			while (i > 1)
 			{
-				my_mlx_pixel_put(img, start, colour);
+				if (within_screen(start->x, start->y))
+					my_mlx_pixel_put(img, start, colour);
 				start->y--;
 				i--;
 			}
-			my_mlx_pixel_put(img, start, colour);
+			if (within_screen(start->x, start->y))
+				my_mlx_pixel_put(img, start, colour);
 			start->x++;
 			i += gradient;
 		}
@@ -50,11 +60,13 @@ static void	draw_line_down(t_img *img, t_coord *start, t_coord *end, int colour)
 		{
 			while (i > 1)
 			{
-				my_mlx_pixel_put(img, start, colour);
+				if (within_screen(start->x, start->y))
+					my_mlx_pixel_put(img, start, colour);
 				start->y++;
 				i--;
 			}
-			my_mlx_pixel_put(img, start, colour);
+			if (within_screen(start->x, start->y))
+				my_mlx_pixel_put(img, start, colour);
 			start->x++;
 			i += gradient;
 		}	

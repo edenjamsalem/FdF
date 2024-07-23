@@ -4,6 +4,14 @@ int	key_event(int keysym, t_mlx_data *mlx)
 {
 	if (keysym == ESC_KEY)
 		close_window(mlx);
+	if (keysym == A_KEY)
+		shift_left(mlx);
+	if (keysym == D_KEY)
+		shift_right(mlx);
+	if (keysym == W_KEY)
+		shift_up(mlx);
+	if (keysym == S_KEY)
+		shift_down(mlx);
 /*	if (keysym == LEFT_KEY)
 		rotate_left();	
 	if (keysym == UP_KEY)
