@@ -94,7 +94,7 @@ void	draw_grid(t_img *img, t_grid_data *grid, int colour);
 
 char	***parse_file(int fd);
 
-int 	init_mlx_data(t_mlx_data *mlx);
+int 	init_mlx_win(t_mlx_data *mlx);
 
 int		init_img(t_img *img, t_mlx_data *mlx);
 

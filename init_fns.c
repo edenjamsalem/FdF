@@ -1,6 +1,6 @@
 #include "FdF.h"
 
-int init_mlx_data(t_mlx_data *mlx)
+int init_mlx_win(t_mlx_data *mlx)
 {
 	mlx->win = mlx_new_window(mlx->ptr, WIN_LEN, WIN_HEIGHT, "FdF");
 	if (!mlx->win)

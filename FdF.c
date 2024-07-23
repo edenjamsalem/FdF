@@ -15,13 +15,8 @@ int	main(int argc, char **argv)
 	mlx.ptr = mlx_init();
 	if (!mlx.ptr)
 		return (1);
-	mlx.win = mlx_new_window(mlx.ptr, WIN_LEN, WIN_HEIGHT, "FdF");
-	if (!mlx.win)
-	{
-		mlx_destroy_display(mlx.ptr);
-		free(mlx.ptr);
+	if (!init_mlx_win(&mlx))
 		return (1);
-	}
 	if (!init_img(&mlx.img, &mlx))
 		return (1);
 	fd = open(argv[1], O_RDONLY);
