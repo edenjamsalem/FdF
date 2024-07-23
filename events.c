@@ -30,5 +30,6 @@ int	close_window(t_mlx_data *mlx)
 	mlx_destroy_display(mlx->ptr);
 	free(mlx->ptr);
 	free_file(mlx->file_elements);
+	free_coords(&mlx->grid);
 	exit(EXIT_SUCCESS);
 }

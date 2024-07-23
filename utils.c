@@ -30,6 +30,23 @@ void	free_file(char ***file_elements)
 	free(file_elements);
 }
 
+void	free_coords(t_grid_data *grid)
+{
+	int 	i;
+	int 	j;
+	
+	i = 0;
+	while (i < grid->width)
+	{
+		j = 0;
+		while (j < grid->len)
+			free(grid->coords[i][j++]);
+		free(grid->coords[i]);
+		i++;
+	}
+	free(grid->coords);
+}
+
 char	***parse_file(int fd)
 {
 	int		i;

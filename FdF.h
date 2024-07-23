@@ -86,6 +86,8 @@ int		close_window(t_mlx_data *mlx);
 
 void	free_file(char ***file_elements);
 
+void	free_coords(t_grid_data *grid);
+
 void	print_file(char ***file_elements, t_grid_data *grid);
 
 void	draw_grid(t_img *img, t_grid_data *grid, int colour);
