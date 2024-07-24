@@ -31,6 +31,8 @@
 # define A_KEY		0x0061
 # define S_KEY		0x0073
 # define D_KEY		0x0064
+# define X_KEY		0x0078
+# define Z_KEY		0x007a
 # define W_KEY		0x0077
 # define UP_KEY		0xff52
 # define DOWN_KEY	0xff54
@@ -54,14 +56,23 @@ typedef struct	s_coord
 	float	y;	
 }				t_coord;
 
+typedef struct	s_angle
+{
+	float x_axis;
+	float y_axis;
+	float z_axis;
+}				t_angle;
+
 typedef struct	s_grid_data
 {
 	t_coord	start;
+	t_coord centre;
 	int		width;
 	int		len;
 	int		box_width;
 	int		box_len;
 	t_coord	***coords;
+	t_angle angles;
 }				t_grid_data;
 
 typedef struct	s_mlx_data
@@ -72,7 +83,6 @@ typedef struct	s_mlx_data
 	char	***file_elements;
 	t_grid_data	grid;
 }				t_mlx_data;
-
 
 int		key_event(int keysym, t_mlx_data *mlx);
 
@@ -109,3 +119,15 @@ void	shift_right(t_mlx_data *mlx);
 void	shift_up(t_mlx_data *mlx);
 
 void	shift_down(t_mlx_data *mlx);
+
+void	zoom_in(t_mlx_data *mlx);
+
+void	zoom_out(t_mlx_data *mlx);
+
+void	set_start_from_centre(t_grid_data *grid);
+
+void	reset_centre(t_grid_data *grid);
+
+void	reset_grid_coords(t_grid_data *grid);
+
+void	rotate_forward(t_mlx_data *mlx, t_grid_data *grid);

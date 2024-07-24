@@ -29,7 +29,9 @@ SRCS =	FdF.c \
 		draw_line.c \
 		draw_grid.c \
 		init_fns.c \
-		translate_fns.c
+		translate_fns.c \
+		zoom_fns.c \
+		rotate_fns.c
 
 all: $(OBJDIR) $(NAME) $(LIBMLX) $(LIBFT)
 

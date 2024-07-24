@@ -54,7 +54,7 @@ char	***parse_file(int fd)
 	char 	***file_elements;
 
 	i = 0;
-	file_elements = malloc(sizeof(char *) * 100); // Make this dynamic !
+	file_elements = malloc(sizeof(char *) * 101); // Make this dynamic !
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -86,3 +86,34 @@ void	print_file(char ***file_elements, t_grid_data *grid)
 	ft_printf("grid len = %d\n", grid->len);
 	ft_printf("grid width = %d\n", grid->width);
 }
+
+void	set_start_from_centre(t_grid_data *grid)
+{
+	grid->start.x = grid->centre.x - (0.5 * grid->len * grid->box_len);
+	grid->start.y = grid->centre.y - (0.5 * grid->width * grid->box_width);
+}
+
+void	reset_centre(t_grid_data *grid)
+{
+	grid->centre.x = grid->coords[grid->width / 2][grid->len / 2]->x;
+	grid->centre.y = grid->coords[grid->width / 2][grid->len / 2]->y;
+}
+
+void	reset_grid_coords(t_grid_data *grid)
+{
+	int 	i;
+	int 	j;
+
+	i = 0;
+	while (i < grid->width)
+	{
+		j = 0;
+		while (j < grid->len)
+		{
+			grid->coords[i][j]->x = grid->start.x + (grid->box_width * j);
+			grid->coords[i][j++]->y = grid->start.y + (grid->box_len * i);
+		}
+		i++;
+	}
+}
+

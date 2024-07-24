@@ -69,8 +69,12 @@ int	init_grid_data(t_grid_data *grid, char ***file_elements)
 	grid->len = ft_2darr_len((void *)(file_elements[0]));
 	grid->box_len = ((WIN_LEN / 2) / grid->len);
 	grid->box_width = ((WIN_LEN / 2) / grid->len);
-	grid->start.x = ((WIN_LEN / 2) - (0.5 * grid->len * grid->box_len));
-	grid->start.y = ((WIN_HEIGHT / 2) - (0.5 * grid->width * grid->box_width));
+	grid->centre.x = (WIN_LEN / 2);
+	grid->centre.y = (WIN_HEIGHT / 2);
+	grid->angles.x_axis = 0;
+	grid->angles.y_axis = 0;
+	grid->angles.z_axis = 0;
+	set_start_from_centre(grid);
 	if (!init_grid_coords(grid))
 		return (0);
 	return (1);
