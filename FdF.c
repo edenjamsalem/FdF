@@ -26,8 +26,6 @@ int	main(int argc, char **argv)
 	
 	ft_printf("grid len %d\n", mlx.grid.len);
 	ft_printf("grid width %d\n", mlx.grid.width);
-	printf("start.x %f\n", mlx.grid.start.x);
-	printf("start.y %f\n", mlx.grid.start.y);
 	
 	draw_grid(&mlx.img, &mlx.grid, 0xFFFFFFFF);
 	mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img.ptr, 0, 0);

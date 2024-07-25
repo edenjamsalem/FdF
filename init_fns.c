@@ -41,13 +41,9 @@ int	init_grid_coords(t_grid_data *grid)
 	int 	j;
 	int		box_len;
 	int		box_width;
-	t_coord	*coord;
-	t_coord	start;
 	
 	box_len = (WIN_LEN / 2) / grid->len;
-	box_width = (WIN_LEN / 2) / grid->len;
-	start.x = (WIN_LEN / 2) - (0.5 * grid->len * box_len);
-	start.y = (WIN_HEIGHT / 2) - (0.5 * grid->width * box_width);
+	box_width = (WIN_HEIGHT / 2) / grid->width;
 	grid->coords = malloc(sizeof(t_coord **) * grid->width);
 	if (!grid->coords)
 		return (0);
@@ -60,10 +56,11 @@ int	init_grid_coords(t_grid_data *grid)
 		j = 0;
 		while (j < grid->len)
 		{
-			coord = malloc(sizeof(coord));
-			coord->x = start.x + (box_width * j);
-			coord->y = start.y + (box_len * i);
-			grid->coords[i][j++] = coord;
+			grid->coords[i][j] = malloc(sizeof(t_coord));
+			if (!grid->coords[i][j]) // need to free mem properly if malloc err
+				return (0);
+			grid->coords[i][j]->x = WIN_LEN / 4 + (box_len * j);
+			grid->coords[i][j++]->y = WIN_HEIGHT / 4 + (box_width * i);
 		}
 		i++;
 	}
