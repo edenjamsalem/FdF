@@ -42,12 +42,15 @@ int	init_grid_coords(t_grid_data *grid)
 	int		box_len;
 	int		box_width;
 	t_coord	*coord;
+	t_coord	start;
 	
+	box_len = (WIN_LEN / 2) / grid->len;
+	box_width = (WIN_LEN / 2) / grid->len;
+	start.x = (WIN_LEN / 2) - (0.5 * grid->len * box_len);
+	start.y = (WIN_HEIGHT / 2) - (0.5 * grid->width * box_width);
 	grid->coords = malloc(sizeof(t_coord **) * grid->width);
 	if (!grid->coords)
 		return (0);
-	box_len = (WIN_LEN / 2) / grid->len;
-	box_width = (WIN_LEN / 2) / grid->len;
 	i = 0;
 	while (i < grid->width)
 	{
@@ -58,8 +61,8 @@ int	init_grid_coords(t_grid_data *grid)
 		while (j < grid->len)
 		{
 			coord = malloc(sizeof(coord));
-			coord->x = grid->start.x + (box_width * j);
-			coord->y = grid->start.y + (box_len * i);
+			coord->x = start.x + (box_width * j);
+			coord->y = start.y + (box_len * i);
 			grid->coords[i][j++] = coord;
 		}
 		i++;
@@ -71,13 +74,14 @@ int	init_grid_data(t_grid_data *grid, char ***file_elements)
 {
 	grid->width = ft_2darr_len((void *)(file_elements)); 
 	grid->len = ft_2darr_len((void *)(file_elements[0]));
-	grid->centre.x = (WIN_LEN / 2);
-	grid->centre.y = (WIN_HEIGHT / 2);
-	grid->angles.x_axis = 0;
-	grid->angles.y_axis = 0;
-	grid->angles.z_axis = 0;
-	set_start_from_centre(grid);
+//	grid->angles.x_axis = 0;
+//	grid->angles.y_axis = 0;
+//	grid->angles.z_axis = 0;
 	if (!init_grid_coords(grid))
 		return (0);
+	grid->centre = malloc(sizeof(t_coord));
+	if (!grid->centre)
+		return (0);
+	grid->centre = grid->coords[grid->width / 2][grid->len / 2];
 	return (1);
 }

@@ -96,26 +96,3 @@ void	print_file(char ***file_elements, t_grid_data *grid)
 	ft_printf("grid len = %d\n", grid->len);
 	ft_printf("grid width = %d\n", grid->width);
 }
-
-void	set_start_from_centre(t_grid_data *grid)
-{
-	int		box_len;
-	int		box_width;
-	
-	box_len = (WIN_LEN / 2) / grid->len;
-	box_width = (WIN_LEN / 2) / grid->len;
-	grid->start.x = grid->centre.x - (0.5 * grid->len * box_len);
-	grid->start.y = grid->centre.y - (0.5 * grid->width * box_width);
-}
-
-void	reset_centre(t_grid_data *grid)
-{
-	grid->centre.x = grid->coords[grid->width / 2][grid->len / 2]->x;
-	grid->centre.y = grid->coords[grid->width / 2][grid->len / 2]->y;
-}
-
-void	reset_start(t_grid_data *grid)
-{
-	grid->start.x = grid->coords[0][0]->x;
-	grid->start.y = grid->coords[0][0]->y;
-}

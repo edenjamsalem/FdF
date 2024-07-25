@@ -1,5 +1,5 @@
 #include "FdF.h"
-
+/*
 void	rotate_forward(t_mlx_data *mlx, t_grid_data *grid)
 {
 	int		i;
@@ -24,4 +24,4 @@ void	rotate_forward(t_mlx_data *mlx, t_grid_data *grid)
 	}
 	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
-}
+}*/
