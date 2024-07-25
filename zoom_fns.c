@@ -1,27 +1,27 @@
 #include "FdF.h"
 
-void	zoom_in(t_mlx_data *mlx)
+void	zoom_out(t_mlx_data *mlx, t_grid_data *grid)
 {
-	draw_grid(&mlx->img, &mlx->grid, 0x00000000);
-	mlx->grid.box_len++;
-	mlx->grid.box_width++;
-	reset_centre(&mlx->grid);
-	set_start_from_centre(&mlx->grid);
-	reset_grid_coords(&mlx->grid);
-	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
-}
+	int		i;
+	int		j;
+	float	x;
+	float	y;
 
-void	zoom_out(t_mlx_data *mlx)
-{
 	draw_grid(&mlx->img, &mlx->grid, 0x00000000);
-	if (mlx->grid.box_len > 0)
-		mlx->grid.box_len--;
-	if (mlx->grid.box_width > 0)
-		mlx->grid.box_width--;
-	reset_centre(&mlx->grid);
-	set_start_from_centre(&mlx->grid);
-	reset_grid_coords(&mlx->grid);
+	i = 0;
+	while (i < grid->width)
+	{
+		j = 0;
+		while (j < grid->len)
+		{
+			x =  grid->coords[i][j]->x - grid->centre.x;
+			y =  grid->coords[i][j]->y - grid->centre.y;
+			grid->coords[i][j]->x += x;
+			grid->coords[i][j]->y += y;
+			j++;
+		}
+		i++;
+	}
 	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
 }

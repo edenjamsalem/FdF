@@ -1,86 +1,70 @@
 #include "FdF.h"
-
-static bool within_screen(int x, int y)
-{
-	if (x > 0 && x < WIN_LEN && y > 0 && y < WIN_HEIGHT)
-		return (true);
-	return (false);
-}
-
+/*
 static void	draw_vertical_line(t_img *img, t_coord *start, t_coord *end, int colour)
 {
 	while (start->y <= end->y)
 	{
-		if (within_screen(start->x, start->y))
-			my_mlx_pixel_put(img, start, colour);
+		my_mlx_pixel_put(img, start, colour);
 		start->y++;
 	}
 }
-
-static void	draw_line_up(t_img *img, t_coord *start, t_coord *end, int colour)
+*/
+static void	draw_line_up(t_img *img, t_coord *start, t_coord *end, float gradient, int colour)
 {
-	float		gradient;
 	float		i;
 
-	if (end->x - start->x == 0)
-		draw_vertical_line(img, end, start, colour);
-	else
+	i = 0;
+	while (start->x <= end->x && start->y >= end->y)
 	{
-		gradient = (float)((end->y - start->y) / (end->x - start->x)); // might need to use fabsf()
-		i = gradient;
-		while (start->x <= end->x && start->y >= end->y)
+		i += gradient;
+		while (i-- > 1)
 		{
-			while (i > 1)
-			{
-				if (within_screen(start->x, start->y))
-					my_mlx_pixel_put(img, start, colour);
-				start->y--;
-				i--;
-			}
-			if (within_screen(start->x, start->y))
-				my_mlx_pixel_put(img, start, colour);
-			start->x++;
-			i += gradient;
+			my_mlx_pixel_put(img, start, colour);
+			start->y--;
+			continue ;
 		}
+		my_mlx_pixel_put(img, start, colour);
+		start->x++;
 	}
 }
 
-static void	draw_line_down(t_img *img, t_coord *start, t_coord *end, int colour)
+static void	draw_line_down(t_img *img, t_coord *start, t_coord *end, float gradient, int colour)
 {
-	float		gradient;
 	float		i;
 
-	if (end->x - start->x == 0)
-		draw_vertical_line(img, start, end, colour);
-	else
+	i = 0;
+	while (start->x <= end->x && start->y <= end->y)
 	{
-		gradient = (float)((end->y - start->y) / (end->x - start->x));
-		i = gradient;
-		while (start->x <= end->x && start->y <= end->y)
+		i += gradient;
+		while (i-- > 1)
 		{
-			while (i > 1)
-			{
-				if (within_screen(start->x, start->y))
-					my_mlx_pixel_put(img, start, colour);
-				start->y++;
-				i--;
-			}
-			if (within_screen(start->x, start->y))
-				my_mlx_pixel_put(img, start, colour);
-			start->x++;
-			i += gradient;
-		}	
-	}
+			my_mlx_pixel_put(img, start, colour);
+			start->y++;
+			continue ;
+		}
+		my_mlx_pixel_put(img, start, colour);
+		start->x++;
+	}	
 }
 
 void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour)
 {
-	if ((end->y - start->y) <= 0 && (end->x - start->x) <= 0)
-		draw_line_down(img, end, start, colour);
-	else if ((end->y - start->y) <= 0)
-		draw_line_up(img, start, end, colour);
-	else if ((end->x - start->x) <= 0)
-		draw_line_up(img, end, start, colour);
+	int		dx;
+	int		dy;
+	float	gradient;
+
+	dx = end->x - start->x;	
+	dy = end->y - start->y;	
+	if (dx == 0)
+		gradient = dy;
 	else
-		draw_line_down(img, start, end, colour);
+		gradient = (float)dy / (float)dx;
+	if (dy <= 0 && dx <= 0)
+		draw_line_down(img, end, start, gradient, colour);
+	else if (dy <= 0)
+		draw_line_up(img, start, end, gradient, colour);
+	else if (dx <= 0)
+		draw_line_up(img, end, start, gradient, colour);
+	else
+		draw_line_down(img, start, end, gradient, colour);
 }

@@ -65,12 +65,12 @@ typedef struct	s_angle
 
 typedef struct	s_grid_data
 {
-	t_coord	start;
-	t_coord centre;
 	int		width;
 	int		len;
 	int		box_width;
 	int		box_len;
+	t_coord start;
+	t_coord centre;
 	t_coord	***coords;
 	t_angle angles;
 }				t_grid_data;
@@ -122,7 +122,7 @@ void	shift_down(t_mlx_data *mlx);
 
 void	zoom_in(t_mlx_data *mlx);
 
-void	zoom_out(t_mlx_data *mlx);
+void	zoom_out(t_mlx_data *mlx, t_grid_data *grid);
 
 void	set_start_from_centre(t_grid_data *grid);
 
@@ -131,3 +131,5 @@ void	reset_centre(t_grid_data *grid);
 void	reset_grid_coords(t_grid_data *grid);
 
 void	rotate_forward(t_mlx_data *mlx, t_grid_data *grid);
+
+void	reset_start(t_grid_data *grid);

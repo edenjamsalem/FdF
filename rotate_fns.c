@@ -7,7 +7,6 @@ void	rotate_forward(t_mlx_data *mlx, t_grid_data *grid)
 	float	x;
 	float	y;
 
-	grid->angles.y_axis += PI / 180;
 	draw_grid(&mlx->img, &mlx->grid, 0x00000000);
 	i = 0;
 	while (i < grid->width)
@@ -17,8 +16,8 @@ void	rotate_forward(t_mlx_data *mlx, t_grid_data *grid)
 		{
 			x = grid->centre.x - grid->coords[i][j]->x ;
 			y = grid->centre.y - grid->coords[i][j]->y ;
-			grid->coords[i][j]->x += x * sin(grid->angles.y_axis);
-			grid->coords[i][j]->y += y * sin(grid->angles.y_axis);
+			grid->coords[i][j]->x += x;
+			grid->coords[i][j]->y += y;
 			j++;
 		}
 		i++;

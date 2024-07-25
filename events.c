@@ -12,13 +12,13 @@ int	key_event(int keysym, t_mlx_data *mlx)
 		shift_up(mlx);
 	if (keysym == S_KEY)
 		shift_down(mlx);
-	if (keysym == Z_KEY)
+/*	if (keysym == Z_KEY)
 		zoom_in(mlx);
 	if (keysym == X_KEY)
 		zoom_out(mlx);
 	if (keysym == UP_KEY)
 		rotate_forward(mlx, &mlx->grid);	
-/*	if (keysym == LEFT_KEY)
+	if (keysym == LEFT_KEY)
 		rotate_left();	
 	if (keysym == DOWN_KEY)
 		rotate_down();	
