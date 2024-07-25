@@ -14,8 +14,8 @@ void	zoom_in(t_mlx_data *mlx, t_grid_data *grid)
 		j = 0;
 		while (j < grid->len)
 		{
-			x =  (grid->coords[i][j]->x - grid->centre->x) / 24;
-			y =  (grid->coords[i][j]->y - grid->centre->y) / 24;
+			x =  (grid->coords[i][j]->x - grid->centre->x) / 50;
+			y =  (grid->coords[i][j]->y - grid->centre->y) / 50;
 			grid->coords[i][j]->x += x;
 			grid->coords[i][j]->y += y;
 			j++;
@@ -40,8 +40,8 @@ void	zoom_out(t_mlx_data *mlx, t_grid_data *grid)
 		j = 0;
 		while (j < grid->len)
 		{
-			x =  (grid->coords[i][j]->x - grid->centre->x) / 24;
-			y =  (grid->coords[i][j]->y - grid->centre->y) / 24;
+			x =  (grid->coords[i][j]->x - grid->centre->x) / 50;
+			y =  (grid->coords[i][j]->y - grid->centre->y) / 50;
 			grid->coords[i][j]->x -= x;
 			grid->coords[i][j]->y -= y;
 			j++;

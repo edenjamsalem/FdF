@@ -79,6 +79,6 @@ int	init_grid_data(t_grid_data *grid, char ***file_elements)
 	grid->centre = malloc(sizeof(t_coord));
 	if (!grid->centre)
 		return (0);
-	grid->centre = grid->coords[grid->width / 2][grid->len / 2];
+	find_centre(grid);
 	return (1);
 }

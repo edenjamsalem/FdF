@@ -109,6 +109,10 @@ int		init_grid_coords(t_grid_data *grid);
 
 int		init_grid_data(t_grid_data *grid, char ***file_elements);
 
+void	find_centre(t_grid_data *grid);
+
+float	rad(int	degrees);
+
 void	shift_left(t_mlx_data *mlx);
 
 void	shift_right(t_mlx_data *mlx);
@@ -121,6 +125,6 @@ void	zoom_in(t_mlx_data *mlx, t_grid_data *grid);
 
 void	zoom_out(t_mlx_data *mlx, t_grid_data *grid);
 
-void	reset_grid_coords(t_grid_data *grid);
+void	rotate_clockwise(t_mlx_data *mlx, t_grid_data *grid);
 
-void	rotate_forward(t_mlx_data *mlx, t_grid_data *grid);
+void	rotate_anticlockwise(t_mlx_data *mlx, t_grid_data *grid);

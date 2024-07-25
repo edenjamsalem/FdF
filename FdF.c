@@ -1,32 +1,26 @@
 #include "FdF.h"
 
-int	rad(int	degrees)
-{
-	return (degrees * (PI / 180));
-}
 
 int	main(int argc, char **argv)
 {
 	t_mlx_data	mlx;
 	int			fd;
 
+ // I can use perror() and exit() instead of return and end the process
+
 	if (argc < 2)
 		return (1);
-	mlx.ptr = mlx_init();
-	if (!mlx.ptr)
+	if (!(mlx.ptr = mlx_init()))
 		return (1);
 	if (!init_mlx_win(&mlx))
 		return (1);
 	if (!init_img(&mlx.img, &mlx))
 		return (1);
-	fd = open(argv[1], O_RDONLY);
+	if (!(fd = open(argv[1], O_RDONLY)))
+		return (1);
 	mlx.file_elements = parse_file(fd);
 //	print_file(mlx.file_elements, &mlx.grid);
 	init_grid_data(&mlx.grid, mlx.file_elements);
-	
-	ft_printf("grid len %d\n", mlx.grid.len);
-	ft_printf("grid width %d\n", mlx.grid.width);
-	
 	draw_grid(&mlx.img, &mlx.grid, 0xFFFFFFFF);
 	mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img.ptr, 0, 0);
 

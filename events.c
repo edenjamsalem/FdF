@@ -16,14 +16,14 @@ int	key_event(int keysym, t_mlx_data *mlx)
 		zoom_in(mlx, &mlx->grid);
 	if (keysym == X_KEY)
 		zoom_out(mlx, &mlx->grid);
+	if (keysym == RIGHT_KEY)
+		rotate_clockwise(mlx, &mlx->grid);
+	if (keysym == LEFT_KEY)
+		rotate_anticlockwise(mlx, &mlx->grid);	
 /*	if (keysym == UP_KEY)
 		rotate_forward(mlx, &mlx->grid);	
-	if (keysym == LEFT_KEY)
-		rotate_left();	
 	if (keysym == DOWN_KEY)
-		rotate_down();	
-	if (keysym == RIGHT_KEY)
-		rotate_right();	*/
+		rotate_down();	 */
 	return (-1);
 }
 
@@ -35,5 +35,6 @@ int	close_window(t_mlx_data *mlx)
 	free(mlx->ptr);
 	free_file(mlx->file_elements);
 	free_coords(&mlx->grid);
+	free(mlx->grid.centre);
 	exit(EXIT_SUCCESS);
 }
