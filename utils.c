@@ -99,8 +99,13 @@ void	print_file(char ***file_elements, t_grid_data *grid)
 
 void	set_start_from_centre(t_grid_data *grid)
 {
-	grid->start.x = grid->centre.x - (0.5 * grid->len * grid->box_len);
-	grid->start.y = grid->centre.y - (0.5 * grid->width * grid->box_width);
+	int		box_len;
+	int		box_width;
+	
+	box_len = (WIN_LEN / 2) / grid->len;
+	box_width = (WIN_LEN / 2) / grid->len;
+	grid->start.x = grid->centre.x - (0.5 * grid->len * box_len);
+	grid->start.y = grid->centre.y - (0.5 * grid->width * box_width);
 }
 
 void	reset_centre(t_grid_data *grid)
@@ -114,22 +119,3 @@ void	reset_start(t_grid_data *grid)
 	grid->start.x = grid->coords[0][0]->x;
 	grid->start.y = grid->coords[0][0]->y;
 }
-
-void	reset_grid_coords(t_grid_data *grid)
-{
-	int 	i;
-	int 	j;
-
-	i = 0;
-	while (i < grid->width)
-	{
-		j = 0;
-		while (j < grid->len)
-		{
-			grid->coords[i][j]->x = grid->start.x + (grid->box_width * j);
-			grid->coords[i][j++]->y = grid->start.y + (grid->box_len * i);
-		}
-		i++;
-	}
-}
-

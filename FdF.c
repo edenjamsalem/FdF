@@ -26,8 +26,6 @@ int	main(int argc, char **argv)
 	
 	ft_printf("grid len %d\n", mlx.grid.len);
 	ft_printf("grid width %d\n", mlx.grid.width);
-	ft_printf("box len %d\n", mlx.grid.box_len);
-	ft_printf("box width %d\n", mlx.grid.box_width);
 	printf("start.x %f\n", mlx.grid.start.x);
 	printf("start.y %f\n", mlx.grid.start.y);
 	

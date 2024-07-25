@@ -67,8 +67,6 @@ typedef struct	s_grid_data
 {
 	int		width;
 	int		len;
-	int		box_width;
-	int		box_len;
 	t_coord start;
 	t_coord centre;
 	t_coord	***coords;
