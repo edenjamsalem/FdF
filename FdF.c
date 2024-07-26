@@ -1,12 +1,21 @@
 #include "FdF.h"
 
+//	TODO:
+//	- correctly handle errors using exit() and perror()
+
+//	- implement perspective projection equations to render image using z;
+//		I need both the coords in 3D space AND its projected 2D coords
+//		I will store the 3D coords, and then project to 2D when drawing the image
+
+// 	- correctly calculate the centre point inc the z coord
+
+//	- fix draw_grid fn to work for rotated images 
+
 
 int	main(int argc, char **argv)
 {
 	t_mlx_data	mlx;
 	int			fd;
-
- // I can use perror() and exit() instead of return and end the process
 
 	if (argc < 2)
 		return (1);
