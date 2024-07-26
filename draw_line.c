@@ -49,7 +49,7 @@ void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour)
 {
 	double		dx;
 	double		dy;
-	double	gradient;
+	double		gradient;
 
 	dx = end->x - start->x;	
 	dy = end->y - start->y;	
@@ -59,10 +59,8 @@ void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour)
 		gradient = dy / dx;
 	if (dy <= 0 && dx <= 0)
 		draw_line_down(img, end, start, gradient, colour);
-	else if (dy <= 0)
+	else if (dx <= 0 || dy <= 0)
 		draw_line_up(img, start, end, gradient, colour);
-	else if (dx <= 0)
-		draw_line_up(img, end, start, gradient, colour);
 	else
 		draw_line_down(img, start, end, gradient, colour);
 }

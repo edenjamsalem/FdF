@@ -106,4 +106,5 @@ void	recentre(t_grid_data *grid)
 {
 	grid->centre->x = (grid->coords[0][0]->x + grid->coords[grid->width - 1][grid->len - 1]->x) / 2;
 	grid->centre->y = (grid->coords[0][0]->y + grid->coords[grid->width - 1][grid->len - 1]->y) / 2;
+	grid->centre->y = (grid->coords[0][0]->z + grid->coords[grid->width - 1][grid->len - 1]->z) / 2;
 }

@@ -5,25 +5,24 @@ int	key_event(int keysym, t_mlx_data *mlx)
 	if (keysym == ESC_KEY)
 		close_window(mlx);
 	if (keysym == A_KEY)
-		shift_left(mlx);
+		rev_rot_z_axis(mlx, &mlx->grid);	
 	if (keysym == D_KEY)
-		shift_right(mlx);
+		rot_z_axis(mlx, &mlx->grid);
 	if (keysym == W_KEY)
-		shift_up(mlx);
-	if (keysym == S_KEY)
-		shift_down(mlx);
+		rot_x_axis(mlx, &mlx->grid);
+//	if (keysym == S_KEY)
 	if (keysym == Z_KEY)
 		zoom_in(mlx, &mlx->grid);
 	if (keysym == X_KEY)
 		zoom_out(mlx, &mlx->grid);
 	if (keysym == RIGHT_KEY)
-		rotate_clockwise(mlx, &mlx->grid);
+		shift_right(mlx);
 	if (keysym == LEFT_KEY)
-		rotate_anticlockwise(mlx, &mlx->grid);	
-/*	if (keysym == UP_KEY)
-		rotate_forward(mlx, &mlx->grid);	
+		shift_left(mlx);
+	if (keysym == UP_KEY)
+		shift_up(mlx);
 	if (keysym == DOWN_KEY)
-		rotate_down();	 */
+		shift_down(mlx);
 	return (-1);
 }
 

@@ -120,6 +120,8 @@ void	zoom_in(t_mlx_data *mlx, t_grid_data *grid);
 
 void	zoom_out(t_mlx_data *mlx, t_grid_data *grid);
 
-void	rotate_clockwise(t_mlx_data *mlx, t_grid_data *grid);
+void	rot_z_axis(t_mlx_data *mlx, t_grid_data *grid);
 
-void	rotate_anticlockwise(t_mlx_data *mlx, t_grid_data *grid);
+void	rev_rot_z_axis(t_mlx_data *mlx, t_grid_data *grid);
+
+void	rot_x_axis(t_mlx_data *mlx, t_grid_data *grid);

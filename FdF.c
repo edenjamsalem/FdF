@@ -19,7 +19,6 @@ int	main(int argc, char **argv)
 	if (!(fd = open(argv[1], O_RDONLY)))
 		return (1);
 	mlx.file_elements = parse_file(fd);
-//	print_file(mlx.file_elements, &mlx.grid);
 	init_grid_data(&mlx.grid, mlx.file_elements);
 //	draw_grid(&mlx.img, &mlx.grid, 0xFFFFFFFF);
 	draw_grid_points(&mlx.img, &mlx.grid, 0xFFFFFFFF);
