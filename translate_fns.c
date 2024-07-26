@@ -1,85 +1,61 @@
 #include "FdF.h"
 
-void	shift_left(t_mlx_data *mlx)
+void	shift_left(t_grid_data *grid)
 {
 	int	i;
 	int j;
 
-//	draw_grid(&mlx->img, &mlx->grid, 0x00000000);
-	draw_grid_points(&mlx->img, &mlx->grid, 0x00000000);
 	i = 0;
-	while (i < mlx->grid.width)
+	while (i < grid->width)
 	{
 		j = 0;
-		while (j < mlx->grid.len)
-			mlx->grid.coords[i][j++]->x -= 2;
+		while (j < grid->len)
+			grid->coords[i][j++]->x -= 2;
 		i++;
 	}
-//	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
-	draw_grid_points(&mlx->img, &mlx->grid, 0xFFFFFFFF);
-	recentre(&mlx->grid);
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
 }
 
-void	shift_right(t_mlx_data *mlx)
+void	shift_right(t_grid_data *grid)
 {
 	int	i;
 	int j;
 
-//	draw_grid(&mlx->img, &mlx->grid, 0x00000000);
-	draw_grid_points(&mlx->img, &mlx->grid, 0x00000000);
 	i = 0;
-	while (i < mlx->grid.width)
+	while (i < grid->width)
 	{
 		j = 0;
-		while (j < mlx->grid.len)
-			mlx->grid.coords[i][j++]->x += 2;
+		while (j < grid->len)
+			grid->coords[i][j++]->x += 2;
 		i++;
 	}
-//	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
-	draw_grid_points(&mlx->img, &mlx->grid, 0xFFFFFFFF);
-	recentre(&mlx->grid);
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
 }
 
-void	shift_up(t_mlx_data *mlx)
+void	shift_up(t_grid_data *grid)
 {
 	int	i;
 	int j;
 
-//	draw_grid(&mlx->img, &mlx->grid, 0x00000000);
-	draw_grid_points(&mlx->img, &mlx->grid, 0x00000000);
 	i = 0;
-	while (i < mlx->grid.width)
+	while (i < grid->width)
 	{
 		j = 0;
-		while (j < mlx->grid.len)
-			mlx->grid.coords[i][j++]->y -= 2;
+		while (j < grid->len)
+			grid->coords[i][j++]->y -= 2;
 		i++;
 	}
-//	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
-	draw_grid_points(&mlx->img, &mlx->grid, 0xFFFFFFFF);
-	recentre(&mlx->grid);
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
 }
 
-void	shift_down(t_mlx_data *mlx)
+void	shift_down(t_grid_data *grid)
 {
 	int	i;
 	int j;
 
-//	draw_grid(&mlx->img, &mlx->grid, 0x00000000);
-	draw_grid_points(&mlx->img, &mlx->grid, 0x00000000);
 	i = 0;
-	while (i < mlx->grid.width)
+	while (i < grid->width)
 	{
 		j = 0;
-		while (j < mlx->grid.len)
-			mlx->grid.coords[i][j++]->y += 2;
+		while (j < grid->len)
+			grid->coords[i][j++]->y += 2;
 		i++;
 	}
-//	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
-	draw_grid_points(&mlx->img, &mlx->grid, 0xFFFFFFFF);
-	recentre(&mlx->grid);
-	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
 }

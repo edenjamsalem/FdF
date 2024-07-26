@@ -1,28 +1,5 @@
 #include "FdF.h"
 
-char *find_offset(int x, int y, t_img *img)
-{
-	return (img->addr + ((y * img->line_len) + (x * (img->bpp / 8))));
-}
-
-static bool within_screen(int x, int y)
-{
-	if (x > 0 && x < WIN_LEN && y > 0 && y < WIN_HEIGHT)
-		return (true);
-	return (false);
-}
-
-void	my_mlx_pixel_put(t_img *img, t_coord *coord, int colour)
-{
-	char	*dst;
-
-	if (within_screen(coord->x, coord->y))
-	{
-		dst = find_offset(coord->x, coord->y, img);
-		*((unsigned int *)dst) = colour;
-	}
-}
-
 void	free_file(char ***file_elements)
 {
 	int			i;
@@ -108,8 +85,8 @@ void	recentre(t_grid_data *grid)
 	int	j;
 	double	aggregate;
 
-	grid->centre->x = (grid->coords[0][0]->x + grid->coords[grid->width - 1][grid->len - 1]->x) / 2;
-	grid->centre->y = (grid->coords[0][0]->y + grid->coords[grid->width - 1][grid->len - 1]->y) / 2;
+	grid->centre.x = (grid->coords[0][0]->x + grid->coords[grid->width - 1][grid->len - 1]->x) / 2;
+	grid->centre.y = (grid->coords[0][0]->y + grid->coords[grid->width - 1][grid->len - 1]->y) / 2;
 	aggregate = 0;
 	i = 0;
 	while (i < grid->width)
@@ -119,5 +96,23 @@ void	recentre(t_grid_data *grid)
 			aggregate += grid->coords[i][j++]->z;
 		i++;
 	}
-	grid->centre->z = aggregate / (grid->width * grid->len);
+	grid->centre.z = aggregate / (grid->width * grid->len);
+}
+
+void	isometric_projection(t_grid_data *grid)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < grid->width)
+	{
+		j = 0;
+		while (j < grid->len)
+		{
+			
+			j++;
+		}
+		i++;
+	}
 }

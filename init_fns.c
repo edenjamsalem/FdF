@@ -56,9 +56,10 @@ int	init_grid_coords(t_grid_data *grid, char ***file_elements)
 		{
 			if (!(grid->coords[i][j] = malloc(sizeof(t_coord))))
 				return (0);
-			grid->coords[i][j]->z = ft_atoi(file_elements[i][j]);
 			grid->coords[i][j]->x = WIN_LEN / 4 + (box_len * j);
-			grid->coords[i][j++]->y = WIN_HEIGHT / 4 + (box_width * i);
+			grid->coords[i][j]->y = WIN_HEIGHT / 4 + (box_width * i);
+			grid->coords[i][j]->z = ft_atoi(file_elements[i][j]);
+			j++;
 		}
 		i++;
 	}
@@ -70,9 +71,6 @@ int	init_grid_data(t_grid_data *grid, char ***file_elements)
 	grid->width = ft_2darr_len((void *)(file_elements)); 
 	grid->len = ft_2darr_len((void *)(file_elements[0]));
 	if (!init_grid_coords(grid, file_elements))
-		return (0);
-	grid->centre = malloc(sizeof(t_coord));
-	if (!grid->centre)
 		return (0);
 	recentre(grid);
 	return (1);

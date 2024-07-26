@@ -24,6 +24,7 @@ LIBFTDIR = ../libft
 LIBFT = $(LIBFTDIR)/libft.a
 
 SRCS =	FdF.c \
+		pixel_put.c \
 		utils.c \
 		events.c \
 		draw_line.c \
@@ -31,7 +32,8 @@ SRCS =	FdF.c \
 		init_fns.c \
 		translate_fns.c \
 		zoom_fns.c \
-		rotate_fns.c
+		rotate_fns.c \
+		rev_rotate_fns.c
 
 all: $(OBJDIR) $(NAME) $(LIBMLX) $(LIBFT)
 

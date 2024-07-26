@@ -2,27 +2,42 @@
 
 int	key_event(int keysym, t_mlx_data *mlx)
 {
+	draw_grid(&mlx->img, &mlx->grid, 0x00000000);
+//	draw_grid_points(&mlx->img, grid, 0x00000000);
 	if (keysym == ESC_KEY)
 		close_window(mlx);
+
 	if (keysym == A_KEY)
-		rev_rot_z_axis(mlx, &mlx->grid);	
+		rev_rot_z_axis(&mlx->grid);	
 	if (keysym == D_KEY)
-		rot_z_axis(mlx, &mlx->grid);
+		rot_z_axis(&mlx->grid);
 	if (keysym == W_KEY)
-		rot_x_axis(mlx, &mlx->grid);
-//	if (keysym == S_KEY)
+		rot_x_axis(&mlx->grid);
+	if (keysym == S_KEY)
+		rev_rot_x_axis(&mlx->grid);
+	if (keysym == Q_KEY)
+		rot_y_axis(&mlx->grid);
+	if (keysym == E_KEY)
+		rev_rot_y_axis(&mlx->grid);
+
+
 	if (keysym == Z_KEY)
-		zoom_in(mlx, &mlx->grid);
+		zoom_in(&mlx->grid);
 	if (keysym == X_KEY)
-		zoom_out(mlx, &mlx->grid);
+		zoom_out(&mlx->grid);
+
 	if (keysym == RIGHT_KEY)
-		shift_right(mlx);
+		shift_right(&mlx->grid);
 	if (keysym == LEFT_KEY)
-		shift_left(mlx);
+		shift_left(&mlx->grid);
 	if (keysym == UP_KEY)
-		shift_up(mlx);
+		shift_up(&mlx->grid);
 	if (keysym == DOWN_KEY)
-		shift_down(mlx);
+		shift_down(&mlx->grid);
+	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
+//	draw_grid_points(&mlx->img, grid, 0xFFFFFFFF);
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
+	recentre(&mlx->grid);
 	return (-1);
 }
 
@@ -34,6 +49,5 @@ int	close_window(t_mlx_data *mlx)
 	free(mlx->ptr);
 	free_file(mlx->file_elements);
 	free_coords(&mlx->grid);
-	free(mlx->grid.centre);
 	exit(EXIT_SUCCESS);
 }

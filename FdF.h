@@ -31,9 +31,11 @@
 # define A_KEY		0x0061
 # define S_KEY		0x0073
 # define D_KEY		0x0064
+# define W_KEY		0x0077
+# define Q_KEY		0x0071	
+# define E_KEY		0x0072
 # define X_KEY		0x0078
 # define Z_KEY		0x007a
-# define W_KEY		0x0077
 # define UP_KEY		0xff52
 # define DOWN_KEY	0xff54
 # define LEFT_KEY	0xff51
@@ -61,7 +63,7 @@ typedef struct	s_grid_data
 {
 	int		width;
 	int		len;
-	t_coord *centre;
+	t_coord centre;
 	t_coord	***coords;
 }				t_grid_data;
 
@@ -76,7 +78,7 @@ typedef struct	s_mlx_data
 
 int		key_event(int keysym, t_mlx_data *mlx);
 
-char	*find_offset(int x, int y, t_img *img);
+int		close_window(t_mlx_data *mlx);
 
 void	my_mlx_pixel_put(t_img *img, t_coord *coord, int colour);
 
@@ -85,8 +87,6 @@ void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour);
 void	draw_grid_points(t_img *img, t_grid_data *grid, int colour);
 
 void	draw_grid(t_img *img, t_grid_data *grid, int colour);
-
-int		close_window(t_mlx_data *mlx);
 
 void	free_file(char ***file_elements);
 
@@ -108,20 +108,29 @@ void	recentre(t_grid_data *grid);
 
 double	rad(int	degrees);
 
-void	shift_left(t_mlx_data *mlx);
 
-void	shift_right(t_mlx_data *mlx);
+void	shift_left(t_grid_data *grid);
 
-void	shift_up(t_mlx_data *mlx);
+void	shift_right(t_grid_data *grid);
 
-void	shift_down(t_mlx_data *mlx);
+void	shift_up(t_grid_data *grid);
 
-void	zoom_in(t_mlx_data *mlx, t_grid_data *grid);
+void	shift_down(t_grid_data *grid);
 
-void	zoom_out(t_mlx_data *mlx, t_grid_data *grid);
 
-void	rot_z_axis(t_mlx_data *mlx, t_grid_data *grid);
+void	zoom_in(t_grid_data *grid);
 
-void	rev_rot_z_axis(t_mlx_data *mlx, t_grid_data *grid);
+void	zoom_out(t_grid_data *grid);
 
-void	rot_x_axis(t_mlx_data *mlx, t_grid_data *grid);
+
+void	rot_x_axis(t_grid_data *grid);
+
+void	rot_y_axis(t_grid_data *grid);
+
+void	rot_z_axis(t_grid_data *grid);
+
+void	rev_rot_x_axis(t_grid_data *grid);
+
+void	rev_rot_y_axis(t_grid_data *grid);
+
+void	rev_rot_z_axis(t_grid_data *grid);
