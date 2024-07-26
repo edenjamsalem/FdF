@@ -97,12 +97,12 @@ void	print_file(char ***file_elements, t_grid_data *grid)
 	ft_printf("grid width = %d\n", grid->width);
 }
 
-float	rad(int	degrees)
+double	rad(int	degrees)
 {
 	return (degrees * (PI / 180));
 }
 
-void	find_centre(t_grid_data *grid)
+void	recentre(t_grid_data *grid)
 {
 	grid->centre->x = (grid->coords[0][0]->x + grid->coords[grid->width - 1][grid->len - 1]->x) / 2;
 	grid->centre->y = (grid->coords[0][0]->y + grid->coords[grid->width - 1][grid->len - 1]->y) / 2;

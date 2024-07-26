@@ -35,30 +35,28 @@ int	init_img(t_img *img, t_mlx_data *mlx)
 	return (1);
 }
 
-int	init_grid_coords(t_grid_data *grid)
+int	init_grid_coords(t_grid_data *grid, char ***file_elements)
 {
 	int 	i;
 	int 	j;
 	int		box_len;
 	int		box_width;
 	
-	box_len = (WIN_LEN / 2) / grid->len;
-	box_width = (WIN_HEIGHT / 2) / grid->width;
-	grid->coords = malloc(sizeof(t_coord **) * grid->width);
-	if (!grid->coords)
+	box_len = (WIN_LEN / 2) / grid->len - 1;
+	box_width = (WIN_HEIGHT / 2) / grid->width - 1;
+	if (!(grid->coords = malloc(sizeof(t_coord **) * grid->width)))
 		return (0);
 	i = 0;
 	while (i < grid->width)
 	{
-		grid->coords[i] = malloc(sizeof(t_coord *) * grid->len);
-		if (!grid->coords[i])
+		if (!(grid->coords[i] = malloc(sizeof(t_coord *) * grid->len)))
 			return (0);
 		j = 0;
 		while (j < grid->len)
 		{
-			grid->coords[i][j] = malloc(sizeof(t_coord));
-			if (!grid->coords[i][j]) // need to free mem properly if malloc err
+			if (!(grid->coords[i][j] = malloc(sizeof(t_coord))))
 				return (0);
+			grid->coords[i][j]->z = ft_atoi(file_elements[i][j]);
 			grid->coords[i][j]->x = WIN_LEN / 4 + (box_len * j);
 			grid->coords[i][j++]->y = WIN_HEIGHT / 4 + (box_width * i);
 		}
@@ -71,14 +69,11 @@ int	init_grid_data(t_grid_data *grid, char ***file_elements)
 {
 	grid->width = ft_2darr_len((void *)(file_elements)); 
 	grid->len = ft_2darr_len((void *)(file_elements[0]));
-//	grid->angles.x_axis = 0;
-//	grid->angles.y_axis = 0;
-//	grid->angles.z_axis = 0;
-	if (!init_grid_coords(grid))
+	if (!init_grid_coords(grid, file_elements))
 		return (0);
 	grid->centre = malloc(sizeof(t_coord));
 	if (!grid->centre)
 		return (0);
-	find_centre(grid);
+	recentre(grid);
 	return (1);
 }

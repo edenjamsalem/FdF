@@ -15,6 +15,7 @@ void	shift_left(t_mlx_data *mlx)
 		i++;
 	}
 	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
+	recentre(&mlx->grid);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
 }
 
@@ -33,6 +34,7 @@ void	shift_right(t_mlx_data *mlx)
 		i++;
 	}
 	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
+	recentre(&mlx->grid);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
 }
 
@@ -51,6 +53,7 @@ void	shift_up(t_mlx_data *mlx)
 		i++;
 	}
 	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
+	recentre(&mlx->grid);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
 }
 
@@ -69,5 +72,6 @@ void	shift_down(t_mlx_data *mlx)
 		i++;
 	}
 	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
+	recentre(&mlx->grid);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
 }

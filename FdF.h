@@ -52,16 +52,10 @@ typedef struct	s_img
 
 typedef struct	s_coord
 {
-	float	x;
-	float	y;	
+	double	x;
+	double	y;	
+	double	z;	
 }				t_coord;
-
-typedef struct	s_angle
-{
-	float x_axis;
-	float y_axis;
-	float z_axis;
-}				t_angle;
 
 typedef struct	s_grid_data
 {
@@ -69,7 +63,6 @@ typedef struct	s_grid_data
 	int		len;
 	t_coord *centre;
 	t_coord	***coords;
-	t_angle angles;
 }				t_grid_data;
 
 typedef struct	s_mlx_data
@@ -89,6 +82,10 @@ void	my_mlx_pixel_put(t_img *img, t_coord *coord, int colour);
 
 void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour);
 
+void	draw_grid_points(t_img *img, t_grid_data *grid, int colour);
+
+void	draw_grid(t_img *img, t_grid_data *grid, int colour);
+
 int		close_window(t_mlx_data *mlx);
 
 void	free_file(char ***file_elements);
@@ -97,21 +94,19 @@ void	free_coords(t_grid_data *grid);
 
 void	print_file(char ***file_elements, t_grid_data *grid);
 
-void	draw_grid(t_img *img, t_grid_data *grid, int colour);
-
 char	***parse_file(int fd);
 
 int 	init_mlx_win(t_mlx_data *mlx);
 
 int		init_img(t_img *img, t_mlx_data *mlx);
 
-int		init_grid_coords(t_grid_data *grid);
+int		init_grid_coords(t_grid_data *grid, char ***file_elements);
 
 int		init_grid_data(t_grid_data *grid, char ***file_elements);
 
-void	find_centre(t_grid_data *grid);
+void	recentre(t_grid_data *grid);
 
-float	rad(int	degrees);
+double	rad(int	degrees);
 
 void	shift_left(t_mlx_data *mlx);
 
