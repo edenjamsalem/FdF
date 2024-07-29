@@ -46,7 +46,7 @@ void	rev_rot_y_axis(t_grid_data *grid)
 			z = grid->coords[i][j]->z - grid->centre.z;
 			new_x = (x * cos(rad(2))) - (z * sin(rad(2)));
 			new_z = (x * sin(rad(2))) + (z * cos(rad(2)));
-			grid->coords[i][j]->y =  new_x + grid->centre.x;
+			grid->coords[i][j]->x =  new_x + grid->centre.x;
 			grid->coords[i][j]->z =  new_z + grid->centre.z;
 			j++;
 		}
