@@ -53,7 +53,7 @@ void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour)
 
 	line.dx = end->x - start->x;	
 	line.dy = end->y - start->y;	
-	line.gradient = (float)line.dy / (float)line.dx;
+	line.gradient = line.dy / line.dx;
 	line.step = 1;
 	if (line.gradient < 0)
 		line.step = -1;
