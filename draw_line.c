@@ -1,5 +1,5 @@
 #include "FdF.h"
-
+/*
 static void	draw_vertical_line(t_img *img, t_coord *start, t_coord *end, int colour)
 {
 	while (start->y <= end->y)
@@ -66,44 +66,77 @@ void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour)
 	else
 		draw_line_down(img, start, end, gradient, colour);
 }
-/*
+
+*/
+void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line, int colour)
+{
+	int		offset;
+	int		delta;
+	int		threshold;
+	int		threshold_inc;
+
+	delta = abs(line->dx) * 2;
+	threshold = abs(line->dy);
+	threshold_inc = abs(line->dy) * 2;
+	offset = 0;
+	if (end->y < start->y)
+	{
+		ft_swap(&end->x, &start->x);
+		ft_swap(&end->y, &start->y);
+	}
+	while (start->y <= end->y)
+	{
+		my_mlx_pixel_put(img, start, colour);
+		offset += delta;
+		if (offset >= threshold)
+		{
+			start->x += line->step;
+			threshold += threshold_inc;
+		}
+		start->y++;
+	}
+}
+void	increment_by_x(t_img *img, t_coord *start, t_coord *end, t_line *line, int colour)
+{
+	int		offset;
+	int		delta;
+	int		threshold;
+	int		threshold_inc;
+
+	delta = abs(line->dy) * 2;
+	threshold = abs(line->dx);
+	threshold_inc = abs(line->dx) * 2;
+	offset = 0;
+	if (end->x < start->x)
+	{
+		ft_swap(&end->x, &start->x);
+		ft_swap(&end->y, &start->y);
+	}
+	while (start->x <= end->x)
+	{
+		my_mlx_pixel_put(img, start, colour);
+		offset += delta;
+		if (offset >= threshold)
+		{
+			start->y += line->step;
+			threshold += threshold_inc;
+		}
+		start->x++;
+	}
+}
+
 void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour)
 {
-	int dx;
-	int dy;
-	int sx;
-	int sy;
-	int	e2;
-	int	err;
-	t_coord current;
+	t_line	line;
 
-	dx = abs((int)end->x - (int)start->x);
-	dy = abs((int)end->y - (int)start->y);
-	if (dx > dy)
-		err = dx / 2;
+	line.dx = end->x - start->x;	
+	line.dy = end->y - start->y;	
+	line.gradient = (float)line.dy / (float)line.dx;
+	line.step = 1;
+	if (line.gradient < 0)
+		line.step = -1;
+	if (line.gradient >= -1 && line.gradient <= 1)
+		increment_by_x(img, start, end, &line, colour);
 	else
-		err = -dy / 2;
-	sx = 1;
-	if (end->x <= start->x)
-		sx = -1;
-	sy = 1;
-	if (end->y <= start->y)
-		sy = -1;
-	current.x = start->x;
-	current.y = start->y;
-	while (1)
-	{
-		my_mlx_pixel_put(img, &current, colour);
-		if (current.x == end->x && current.y == end->y)
-			break ;
-		e2 = 2 * err;
-        if (e2 > -dx) {
-            err -= dy;
-            current.x += sx;
-        }
-        if (e2 < dy) {
-            err += dx;
-            current.y += sy;
-        }
-	}	
-}*/
+		increment_by_y(img, start, end, &line, colour);
+}

@@ -52,11 +52,20 @@ typedef struct	s_img
 	int		endian;
 }				t_img;
 
+typedef struct	s_line
+{
+	int		dx;
+	int		dy;
+	float	gradient;
+	int		step;
+}				t_line;
+
+
 typedef struct	s_coord
 {
-	double	x;
-	double	y;	
-	double	z;	
+	int	x;
+	int	y;	
+	int	z;	
 }				t_coord;
 
 typedef struct	s_grid_data

@@ -2,8 +2,8 @@
 
 int	key_event(int keysym, t_mlx_data *mlx)
 {
-//	draw_grid(&mlx->img, &mlx->grid, 0x00000000);
-	draw_grid_points(&mlx->img, &mlx->grid, 0x00000000);
+	draw_grid(&mlx->img, &mlx->grid, 0x00000000);
+//	draw_grid_points(&mlx->img, &mlx->grid, 0x00000000);
 	if (keysym == ESC_KEY)
 		close_window(mlx);
 
@@ -33,8 +33,8 @@ int	key_event(int keysym, t_mlx_data *mlx)
 		shift_up(&mlx->grid);
 	if (keysym == DOWN_KEY)
 		shift_down(&mlx->grid);
-//	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
-	draw_grid_points(&mlx->img, &mlx->grid, 0xFFFFFFFF);
+	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
+//	draw_grid_points(&mlx->img, &mlx->grid, 0xFFFFFFFF);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
 	recentre(&mlx->grid);
 	return (-1);
