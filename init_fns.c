@@ -65,7 +65,7 @@ static int	init_grid_coords(t_grid_data *grid, char ***file_elements)
 	}
 	return (1);
 }
-
+// need to set default value of grid point to 0 incase file has one missing (pylone)
 int	init_grid_data(t_grid_data *grid, char ***file_elements)
 {
 	grid->width = ft_2darr_len((void *)(file_elements)); 

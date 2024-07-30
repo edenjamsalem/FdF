@@ -56,7 +56,6 @@ typedef struct	s_line
 {
 	double	dx;
 	double	dy;
-	double	gradient;
 	int		step;
 }				t_line;
 

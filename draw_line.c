@@ -53,11 +53,10 @@ void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour)
 
 	line.dx = end->x - start->x;	
 	line.dy = end->y - start->y;	
-	line.gradient = line.dy / line.dx;
 	line.step = 1;
-	if (line.gradient < 0)
+	if (!(line.dy < 0 && line.dx < 0) && (line.dx < 0 || line.dy < 0))
 		line.step = -1;
-	if (line.gradient >= -1 && line.gradient <= 1)
+	if (fabs(line.dx) > fabs(line.dy))
 	{
 		if (start->x < end->x)
 			increment_by_x(img, start, end, &line, colour);
