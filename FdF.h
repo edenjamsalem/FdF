@@ -54,8 +54,8 @@ typedef struct	s_img
 
 typedef struct	s_line
 {
-	int		dx;
-	int		dy;
+	double	dx;
+	double	dy;
 	float	gradient;
 	int		step;
 }				t_line;
@@ -63,9 +63,9 @@ typedef struct	s_line
 
 typedef struct	s_coord
 {
-	int	x;
-	int	y;	
-	int	z;	
+	double	x;
+	double	y;
+	double	z;
 }				t_coord;
 
 typedef struct	s_grid_data

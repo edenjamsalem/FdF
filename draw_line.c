@@ -71,18 +71,18 @@ void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour)
 void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line, int colour)
 {
 	int		offset;
-	int		delta;
+	double	delta;
 	int		threshold;
 	int		threshold_inc;
 
-	delta = abs(line->dx) * 2;
-	threshold = abs(line->dy);
-	threshold_inc = abs(line->dy) * 2;
+	delta = fabs(line->dx) * 2;
+	threshold = fabs(line->dy);
+	threshold_inc = fabs(line->dy) * 2;
 	offset = 0;
 	if (end->y < start->y)
 	{
-		ft_swap(&end->x, &start->x);
-		ft_swap(&end->y, &start->y);
+		ft_swap((int *)&end->x, (int *)&start->x);
+		ft_swap((int *)&end->y, (int *)&start->y);
 	}
 	while (start->y <= end->y)
 	{
@@ -99,18 +99,18 @@ void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line, int 
 void	increment_by_x(t_img *img, t_coord *start, t_coord *end, t_line *line, int colour)
 {
 	int		offset;
-	int		delta;
+	double	delta;
 	int		threshold;
 	int		threshold_inc;
 
-	delta = abs(line->dy) * 2;
-	threshold = abs(line->dx);
-	threshold_inc = abs(line->dx) * 2;
+	delta = fabs(line->dy) * 2;
+	threshold = fabs(line->dx);
+	threshold_inc = fabs(line->dx) * 2;
 	offset = 0;
 	if (end->x < start->x)
 	{
-		ft_swap(&end->x, &start->x);
-		ft_swap(&end->y, &start->y);
+		ft_swap((int *)&end->x, (int *)&start->x);
+		ft_swap((int *)&end->y, (int *)&start->y);
 	}
 	while (start->x <= end->x)
 	{
