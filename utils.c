@@ -81,20 +81,28 @@ double	rad(int	degrees)
 
 void	recentre(t_grid_data *grid)
 {
-	int	i;
-	int	j;
-	double	aggregate;
+	int		i;
+	int		j;
+	double	sum_z;
+	double	x_first;
+	double	y_first;
+	double	x_end;
+	double	y_end;
 
-	grid->centre.x = (grid->coords[0][0]->x + grid->coords[grid->width - 1][grid->len - 1]->x) / 2;
-	grid->centre.y = (grid->coords[0][0]->y + grid->coords[grid->width - 1][grid->len - 1]->y) / 2;
-	aggregate = 0;
+	x_first = grid->coords[0][0]->x;
+	y_first = grid->coords[0][0]->y;
+	x_end = grid->coords[grid->width - 1][grid->len - 1]->x;
+	y_end = grid->coords[grid->width - 1][grid->len - 1]->y;
+	grid->centre.x = (x_first + x_end) / 2;
+	grid->centre.y = (y_first + y_end) / 2;
+	sum_z = 0;
 	i = 0;
 	while (i < grid->width)
 	{
 		j = 0;
 		while (j < grid->len)
-			aggregate += grid->coords[i][j++]->z;
+			sum_z += grid->coords[i][j++]->z;
 		i++;
 	}
-	grid->centre.z = aggregate / (grid->width * grid->len);
+	grid->centre.z = sum_z / (grid->width * grid->len);
 }

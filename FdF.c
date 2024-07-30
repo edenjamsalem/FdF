@@ -3,9 +3,9 @@
 //	TODO:
 //	- correctly handle errors using exit() and perror()
 
-//	- fix draw_grid fn to work for rotated images 
+// 	- add colour gradient
 
-//	- init model to initially start with isometric view
+// 	- parse input dynamically
 
 int	main(int argc, char **argv)
 {
