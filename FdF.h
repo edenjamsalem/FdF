@@ -122,6 +122,7 @@ void	isometric_projection(t_grid_data *grid);
 
 double 	convert_dec(char *nbr);
 
+char	*find_offset(int x, int y, t_img *img);
 
 void	shift_left(t_grid_data *grid);
 

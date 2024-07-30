@@ -1,9 +1,29 @@
 #include "FdF.h"
 
+void	clear_image(t_mlx_data *mlx)
+{
+	int	x;
+	int	y;
+	char *dst;
+
+	y = 0;
+	while (y < WIN_HEIGHT)
+	{
+		x = 0;
+		while (x < WIN_LEN)
+		{
+			dst = find_offset(x, y, &mlx->img);
+			*((unsigned int *)dst) = 0x00000000;
+			x++;
+		}
+		y++;
+	}
+}
+
 int	key_event(int keysym, t_mlx_data *mlx)
 {
-	draw_grid(&mlx->img, &mlx->grid, 0x00000000);
-//	draw_grid_points(&mlx->img, &mlx->grid, 0x00000000);
+//	draw_grid(&mlx->img, &mlx->grid, 0x00000000);
+	clear_image(mlx);
 	if (keysym == ESC_KEY)
 		close_window(mlx);
 
@@ -35,7 +55,6 @@ int	key_event(int keysym, t_mlx_data *mlx)
 		shift_down(&mlx->grid);
 	recentre(&mlx->grid);
 	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
-//	draw_grid_points(&mlx->img, &mlx->grid, 0xFFFFFFFF);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
 	return (-1);
 }

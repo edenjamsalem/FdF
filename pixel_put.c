@@ -1,6 +1,6 @@
 #include "FdF.h"
 
-static char *find_offset(int x, int y, t_img *img)
+char *find_offset(int x, int y, t_img *img)
 {
 	return (img->addr + ((y * img->line_len) + (x * (img->bpp / 8))));
 }
