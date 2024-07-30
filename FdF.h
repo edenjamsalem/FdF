@@ -105,8 +105,6 @@ void	print_file(char ***file_elements);
 
 char	***parse_file(char *file_contents);
 
-char	*ft_strjoin_free(char *s1, char *s2);
-
 char	*read_file(int fd);
 
 
@@ -114,13 +112,15 @@ int 	init_mlx_win(t_mlx_data *mlx);
 
 int		init_img(t_img *img, t_mlx_data *mlx);
 
-int		init_grid_coords(t_grid_data *grid, char ***file_elements);
-
 int		init_grid_data(t_grid_data *grid, char ***file_elements);
 
 void	recentre(t_grid_data *grid);
 
 double	rad(int	degrees);
+
+void	isometric_projection(t_grid_data *grid);
+
+double 	convert_dec(char *nbr);
 
 
 void	shift_left(t_grid_data *grid);

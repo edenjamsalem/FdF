@@ -82,3 +82,18 @@ void	recentre(t_grid_data *grid)
 	}
 	grid->centre.z = sum_z / (grid->width * grid->len);
 }
+
+void	isometric_projection(t_grid_data *grid)
+{
+	rot_x_axis(grid, 30);
+	rot_y_axis(grid, -30);
+	rot_z_axis(grid, 30);
+}
+
+double convert_dec(char *nbr)
+{
+	if (ft_strncmp(nbr, "0x", 2) == 0)
+		return ((double)ft_atoi_base(nbr, "0x123456789ABCDEF"));
+	else
+		return ((double)ft_atoi(nbr));
+}

@@ -1,6 +1,6 @@
 #include "FdF.h"
 
-char	*ft_strjoin_free(char *s1, char *s2)
+static char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*new_str;
 	int		tot_len;
@@ -46,6 +46,7 @@ char	***parse_file(char *file_contents)
 {
 	int		i;
 	int		row_count;
+	int		row_len;
 	char	**rows;
 	char	***file_elements;
 
@@ -58,11 +59,11 @@ char	***parse_file(char *file_contents)
 	while (i < row_count)
 	{
 		file_elements[i] = ft_split(rows[i], ' ');
-		free(rows[i]);
-		i++;
+		free(rows[i++]);
 	}
 	file_elements[i] = NULL;
-	free(rows);
 	free(file_contents);
+	free(rows);
+	row_len = ft_2darr_len((void *)file_elements[0]);
 	return (file_elements);
 }
