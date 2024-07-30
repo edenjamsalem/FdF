@@ -132,14 +132,8 @@ void	zoom_in(t_grid_data *grid);
 void	zoom_out(t_grid_data *grid);
 
 
-void	rot_x_axis(t_grid_data *grid);
+void	rot_x_axis(t_grid_data *grid, int angle);
 
-void	rot_y_axis(t_grid_data *grid);
+void	rot_y_axis(t_grid_data *grid, int angle);
 
-void	rot_z_axis(t_grid_data *grid);
-
-void	rev_rot_x_axis(t_grid_data *grid);
-
-void	rev_rot_y_axis(t_grid_data *grid);
-
-void	rev_rot_z_axis(t_grid_data *grid);
+void	rot_z_axis(t_grid_data *grid, int angle);

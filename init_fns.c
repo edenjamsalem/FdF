@@ -58,12 +58,19 @@ int	init_grid_coords(t_grid_data *grid, char ***file_elements)
 				return (0);
 			grid->coords[i][j]->x = WIN_LEN / 4 + (box_len * j);
 			grid->coords[i][j]->y = WIN_HEIGHT / 4 + (box_width * i);
-			grid->coords[i][j]->z = ft_atoi(file_elements[i][j]);
+			grid->coords[i][j]->z = ft_atoi(file_elements[i][j]) * 2;
 			j++;
 		}
 		i++;
 	}
 	return (1);
+}
+
+void	isometric_projection(t_grid_data *grid)
+{
+	rot_x_axis(grid, 30);
+	rot_y_axis(grid, -30);
+	rot_z_axis(grid, 30);
 }
 
 int	init_grid_data(t_grid_data *grid, char ***file_elements)
@@ -73,5 +80,6 @@ int	init_grid_data(t_grid_data *grid, char ***file_elements)
 	if (!init_grid_coords(grid, file_elements))
 		return (0);
 	recentre(grid);
+	isometric_projection(grid);
 	return (1);
 }

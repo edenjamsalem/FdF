@@ -32,8 +32,7 @@ SRCS =	FdF.c \
 		init_fns.c \
 		translate_fns.c \
 		zoom_fns.c \
-		rotate_fns.c \
-		rev_rotate_fns.c
+		rotate_fns.c
 
 all: $(OBJDIR) $(NAME) $(LIBMLX) $(LIBFT)
 

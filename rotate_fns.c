@@ -1,6 +1,6 @@
 #include "FdF.h"
 
-void	rot_x_axis(t_grid_data *grid)
+void	rot_x_axis(t_grid_data *grid, int angle)
 {
 	int	i;
 	int	j;
@@ -17,8 +17,8 @@ void	rot_x_axis(t_grid_data *grid)
 		{
 			y = grid->coords[i][j]->y - grid->centre.y;
 			z = grid->coords[i][j]->z - grid->centre.z;
-			new_y = (y * cos(rad(1))) - (z * sin(rad(1)));
-			new_z = (y * sin(rad(1))) + (z * cos(rad(1)));
+			new_y = (y * cos(rad(angle))) - (z * sin(rad(angle)));
+			new_z = (y * sin(rad(angle))) + (z * cos(rad(angle)));
 			grid->coords[i][j]->y =  new_y + grid->centre.y;
 			grid->coords[i][j]->z =  new_z + grid->centre.z;
 			j++;
@@ -27,7 +27,7 @@ void	rot_x_axis(t_grid_data *grid)
 	}
 }
 
-void	rot_y_axis(t_grid_data *grid)
+void	rot_y_axis(t_grid_data *grid, int angle)
 {
 	int	i;
 	int	j;
@@ -44,8 +44,8 @@ void	rot_y_axis(t_grid_data *grid)
 		{
 			x = grid->coords[i][j]->x - grid->centre.x;
 			z = grid->coords[i][j]->z - grid->centre.z;
-			new_x = (x * cos(rad(1))) + (z * sin(rad(1)));
-			new_z = -(x * sin(rad(1))) + (z * cos(rad(1)));
+			new_x = (x * cos(rad(angle))) + (z * sin(rad(angle)));
+			new_z = -(x * sin(rad(angle))) + (z * cos(rad(angle)));
 			grid->coords[i][j]->x =  new_x + grid->centre.x;
 			grid->coords[i][j]->z =  new_z + grid->centre.z;
 			j++;
@@ -54,7 +54,7 @@ void	rot_y_axis(t_grid_data *grid)
 	}
 }
 
-void	rot_z_axis(t_grid_data *grid)
+void	rot_z_axis(t_grid_data *grid, int angle)
 {
 	int	i;
 	int	j;
@@ -71,8 +71,8 @@ void	rot_z_axis(t_grid_data *grid)
 		{
 			x = grid->coords[i][j]->x - grid->centre.x;
 			y = grid->coords[i][j]->y - grid->centre.y;
-			new_x = (x * cos(rad(1))) - (y * sin(rad(1)));
-			new_y = (x * sin(rad(1))) + (y * cos(rad(1)));
+			new_x = (x * cos(rad(angle))) - (y * sin(rad(angle)));
+			new_y = (x * sin(rad(angle))) + (y * cos(rad(angle)));
 			grid->coords[i][j]->x =  new_x + grid->centre.x;
 			grid->coords[i][j]->y =  new_y + grid->centre.y;
 			j++;
