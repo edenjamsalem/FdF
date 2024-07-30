@@ -34,29 +34,7 @@ void	free_coords(t_grid_data *grid)
 	free(grid->coords);
 }
 
-char	***parse_file(int fd)
-{
-	int		i;
-	char	*line;
-	char 	***file_elements;
-
-	i = 0;
-	file_elements = malloc(sizeof(char *) * 101); // Make this dynamic !
-	while (1)
-	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		line[ft_strlen(line) - 1] = '\0';
-		file_elements[i] = ft_split(line, ' ');
-		free(line);
-		i++;
-	}
-	file_elements[i] = NULL;
-	return (file_elements); 
-}
-
-void	print_file(char ***file_elements, t_grid_data *grid)
+void	print_file(char ***file_elements)
 {
 	int			i;
 	int			j;
@@ -70,8 +48,6 @@ void	print_file(char ***file_elements, t_grid_data *grid)
 		ft_printf("\n");
 		i++;
 	}
-	ft_printf("grid len = %d\n", grid->len);
-	ft_printf("grid width = %d\n", grid->width);
 }
 
 double	rad(int	degrees)

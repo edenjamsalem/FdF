@@ -101,9 +101,14 @@ void	free_file(char ***file_elements);
 
 void	free_coords(t_grid_data *grid);
 
-void	print_file(char ***file_elements, t_grid_data *grid);
+void	print_file(char ***file_elements);
 
-char	***parse_file(int fd);
+char	***parse_file(char *file_contents);
+
+char	*ft_strjoin_free(char *s1, char *s2);
+
+char	*read_file(int fd);
+
 
 int 	init_mlx_win(t_mlx_data *mlx);
 
