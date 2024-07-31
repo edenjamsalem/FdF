@@ -7,18 +7,18 @@ static bool within_screen(int x, int y)
 	return (false);
 }
 
-void	put_pixel(t_img *img, t_coord *coord, int colour)
+void	put_pixel(t_img *img, t_coord *coord)
 {
 	char	*dst;
 
 	if (within_screen(coord->x, coord->y))
 	{
 		dst = find_offset(coord->x, coord->y, img);
-		*((unsigned int *)dst) = colour;
+		*((unsigned int *)dst) = 0xFF800080;
 	}
 }
 
-static void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line, int colour)
+static void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line)
 {
 	int		offset;
 	double	delta;
@@ -32,7 +32,7 @@ static void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *lin
 	while (start->y <= end->y)
 	{
 		start->y++;
-		put_pixel(img, start, colour);
+		put_pixel(img, start);
 		offset += delta;
 		if (offset >= threshold)
 		{
@@ -41,7 +41,8 @@ static void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *lin
 		}
 	}
 }
-static void	increment_by_x(t_img *img, t_coord *start, t_coord *end, t_line *line, int colour)
+
+static void	increment_by_x(t_img *img, t_coord *start, t_coord *end, t_line *line)
 {
 	int		offset;
 	double	delta;
@@ -55,7 +56,7 @@ static void	increment_by_x(t_img *img, t_coord *start, t_coord *end, t_line *lin
 	while (start->x <= end->x)
 	{
 		start->x++;
-		put_pixel(img, start, colour);
+		put_pixel(img, start);
 		offset += delta;
 		if (offset >= threshold)
 		{
@@ -65,7 +66,7 @@ static void	increment_by_x(t_img *img, t_coord *start, t_coord *end, t_line *lin
 	}
 }
 
-void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour)
+void	draw_line(t_img *img, t_coord *start, t_coord *end)
 {
 	t_line	line;
 
@@ -77,15 +78,15 @@ void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour)
 	if (fabs(line.dx) > fabs(line.dy))
 	{
 		if (start->x < end->x)
-			increment_by_x(img, start, end, &line, colour);
+			increment_by_x(img, start, end, &line);
 		else
-			increment_by_x(img, end, start, &line, colour);
+			increment_by_x(img, end, start, &line);
 	}
 	else
 	{
 		if (start->y < end->y)
-			increment_by_y(img, start, end, &line, colour);
+			increment_by_y(img, start, end, &line);
 		else
-			increment_by_y(img, end, start, &line, colour);
+			increment_by_y(img, end, start, &line);
 	}
 }

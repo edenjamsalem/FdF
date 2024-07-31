@@ -30,7 +30,7 @@ int mouse_event(int button, int x, int y, t_mlx_data *mlx)
 		zoom(&mlx->grid, 20);
 	if (button == SCROLL_DOWN)
 		zoom(&mlx->grid, -20);
-	draw_model(mlx, 0xFFFFFFFF);
+	draw_model(mlx);
 	return (-1);
 }
 
@@ -59,7 +59,7 @@ int	key_event(int keysym, t_mlx_data *mlx)
 		shift('y', -4, &mlx->grid);
 	if (keysym == DOWN_KEY)
 		shift('y', 4, &mlx->grid);
-	draw_model(mlx, 0xFFFFFFFF);
+	draw_model(mlx);
 	return (0);
 }
 

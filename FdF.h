@@ -33,8 +33,6 @@
 # define W_KEY			0x0077
 # define Q_KEY			0x0071	
 # define E_KEY			0x0065
-# define X_KEY			0x0078
-# define Z_KEY			0x007a
 # define UP_KEY			0xff52
 # define DOWN_KEY		0xff54
 # define LEFT_KEY		0xff51
@@ -91,13 +89,13 @@ int		mouse_event(int button, int x, int y, t_mlx_data *mlx);
 
 int		close_window(t_mlx_data *mlx);
 
-void	put_pixel(t_img *img, t_coord *coord, int colour);
+void	put_pixel(t_img *img, t_coord *coord);
 
 char	*find_offset(int x, int y, t_img *img);
 
-void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour);
+void	draw_line(t_img *img, t_coord *start, t_coord *end);
 
-void	draw_model(t_mlx_data *mlx, int colour);
+void	draw_model(t_mlx_data *mlx);
 
 void	free_file(char ***file_elements);
 
@@ -109,9 +107,9 @@ char	*read_file(int fd);
 
 void	malloc_error();
 
-void 	init_mlx(t_mlx_data *mlx);
+void 	init_mlx_data(t_mlx_data *mlx);
 
-void	init_img(t_img *img, t_mlx_data *mlx);
+void	init_img_data(t_img *img, t_mlx_data *mlx);
 
 void	init_grid_data(t_grid_data *grid, char ***file_elements);
 

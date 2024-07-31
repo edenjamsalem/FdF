@@ -1,6 +1,6 @@
 #include "../FdF.h"
 
-void	init_mlx(t_mlx_data *mlx)
+void	init_mlx_data(t_mlx_data *mlx)
 {
 	if (!(mlx->ptr = mlx_init()))
 		exit(EXIT_FAILURE);
@@ -13,7 +13,7 @@ void	init_mlx(t_mlx_data *mlx)
 	}
 }
 
-void	init_img(t_img *img, t_mlx_data *mlx)
+void	init_img_data(t_img *img, t_mlx_data *mlx)
 {
 	img->ptr = mlx_new_image(mlx->ptr, WIN_LEN, WIN_HEIGHT);
 	if (!img->ptr)
