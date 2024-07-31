@@ -10,7 +10,6 @@ int mouse_event(int button, int x, int y, t_mlx_data *mlx)
 		zoom(&mlx->grid, 64);
 	if (button == SCROLL_DOWN)
 		zoom(&mlx->grid, -64);
-
 	find_centre(&mlx->grid);
 	draw_model(&mlx->img, &mlx->grid, 0xFFFFFFFF);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
@@ -49,15 +48,4 @@ int	key_event(int keysym, t_mlx_data *mlx)
 	draw_model(&mlx->img, &mlx->grid, 0xFFFFFFFF);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
 	return (-1);
-}
-
-int	close_window(t_mlx_data *mlx)
-{
-	mlx_destroy_image(mlx->ptr, mlx->img.ptr);
-	mlx_destroy_window(mlx->ptr, mlx->win);
-	mlx_destroy_display(mlx->ptr);
-	free(mlx->ptr);
-	free_file(mlx->file_elements);
-	free_coords(&mlx->grid);
-	exit(EXIT_SUCCESS);
 }

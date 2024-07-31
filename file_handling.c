@@ -1,5 +1,11 @@
 #include "FdF.h"
 
+void	malloc_error()
+{
+	perror("Malloc Error");
+	exit(EXIT_FAILURE);
+}
+
 static char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*new_str;
@@ -10,7 +16,7 @@ static char	*ft_strjoin_free(char *s1, char *s2)
 	tot_len = ft_strlen(s1) + ft_strlen(s2);
 	new_str = malloc(sizeof(char) * (tot_len + 1));
 	if (!new_str)
-		return (NULL);
+		malloc_error();
 	i = 0;
 	while (s1[i])
 	{
@@ -32,6 +38,8 @@ char	*read_file(int fd)
 	char 	*file_contents;
 
 	file_contents = malloc(sizeof(char));
+	if (!file_contents)
+		malloc_error();
 	file_contents[0] = '\0';
 	while (1)
 	{
@@ -54,7 +62,7 @@ char	***parse_file(char *file_contents)
 	row_count = ft_2darr_len((void *)rows);
 	file_elements = malloc(sizeof(char **) * (row_count + 1));
 	if (!file_elements)
-		return (NULL);
+		malloc_error();
 	i = 0;
 	while (i < row_count)
 	{

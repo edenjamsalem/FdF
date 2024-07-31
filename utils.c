@@ -1,38 +1,5 @@
 #include "FdF.h"
 
-void	free_file(char ***file_elements)
-{
-	int			i;
-	int			j;
-	
-	i = 0;
-	while (file_elements[i])
-	{
-		j = 0;
-		while (file_elements[i][j])
-			free(file_elements[i][j++]);
-		free(file_elements[i]);
-		i++;
-	}
-	free(file_elements);
-}
-
-void	free_coords(t_grid_data *grid)
-{
-	int 	i;
-	int 	j;
-	
-	i = 0;
-	while (i < grid->width)
-	{
-		j = 0;
-		while (j < grid->len)
-			free(grid->coords[i][j++]);
-		free(grid->coords[i]);
-		i++;
-	}
-	free(grid->coords);
-}
 
 float	rad(float degrees)
 {
@@ -62,10 +29,8 @@ void	find_centre(t_grid_data *grid)
 	float	sum_z;
 	int		total;
 
-	sum_x = 0;
-	sum_y = 0;
-	sum_z = 0;
 	total = grid->width * grid->len;
+	sum_x = sum_y = sum_z = 0;
 	i = 0;
 	while (i < grid->width)
 	{

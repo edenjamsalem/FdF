@@ -110,12 +110,13 @@ char	*read_file(int fd);
 
 void	clear_image(t_mlx_data *mlx);
 
+void	malloc_error();
 
-int 	init_mlx_win(t_mlx_data *mlx);
+void 	init_mlx_win(t_mlx_data *mlx);
 
-int		init_img(t_img *img, t_mlx_data *mlx);
+void	init_img(t_img *img, t_mlx_data *mlx);
 
-int		init_grid_data(t_grid_data *grid, char ***file_elements);
+void	init_grid_data(t_grid_data *grid, char ***file_elements);
 
 void	find_centre(t_grid_data *grid);
 
@@ -134,7 +135,7 @@ void	shift_x(t_grid_data *grid, int step);
 
 void	shift_y(t_grid_data *grid, int step);
 
-void	zoom(t_grid_data *grid, int factor);
+void	zoom(t_grid_data *grid, float factor);
 
 
 void	rot_x_axis(t_grid_data *grid, int angle);
