@@ -40,6 +40,14 @@
 # define SCROLL_UP		4
 # define SCROLL_DOWN	5
 
+
+// Colours
+# define WHITE	0xFFFFFFFF
+# define RED	0xFFFF0000
+# define GREEN	0xFF00FF00
+# define BLUE	0xFF0000FF
+# define PURPLE	0xFF800080
+
 # define PI	3.14159265358979323846
 
 typedef struct	s_img
@@ -88,8 +96,6 @@ int		key_event(int keysym, t_mlx_data *mlx);
 int		mouse_event(int button, int x, int y, t_mlx_data *mlx);
 
 int		close_window(t_mlx_data *mlx);
-
-void	put_pixel(t_img *img, t_coord *coord);
 
 char	*find_offset(int x, int y, t_img *img);
 

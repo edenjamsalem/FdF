@@ -7,14 +7,14 @@ static bool within_screen(int x, int y)
 	return (false);
 }
 
-void	put_pixel(t_img *img, t_coord *coord)
+static void	put_pixel(t_img *img, t_coord *coord)
 {
 	char	*dst;
 
 	if (within_screen(coord->x, coord->y))
 	{
 		dst = find_offset(coord->x, coord->y, img);
-		*((unsigned int *)dst) = 0xFF800080;
+		*((unsigned int *)dst) = 0xfff8f8ff;
 	}
 }
 
