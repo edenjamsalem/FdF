@@ -39,8 +39,8 @@ static int	init_grid_coords(t_grid_data *grid, char ***file_elements)
 {
 	int 	i;
 	int 	j;
-	double	box_len;
-	double	box_width;
+	float	box_len;
+	float	box_width;
 	
 	box_len = (WIN_LEN / 2) / grid->len - 1;
 	box_width = (WIN_HEIGHT / 2) / grid->width - 1;

@@ -4,10 +4,10 @@ void	rot_x_axis(t_grid_data *grid, int angle)
 {
 	int	i;
 	int	j;
-	double y;
-	double z;
-	double new_y;
-	double new_z;
+	float y;
+	float z;
+	float new_y;
+	float new_z;
 
 	i = 0;
 	while (i < grid->width)
@@ -31,10 +31,10 @@ void	rot_y_axis(t_grid_data *grid, int angle)
 {
 	int	i;
 	int	j;
-	double x;
-	double z;
-	double new_x;
-	double new_z;
+	float x;
+	float z;
+	float new_x;
+	float new_z;
 
 	i = 0;
 	while (i < grid->width)
@@ -58,10 +58,10 @@ void	rot_z_axis(t_grid_data *grid, int angle)
 {
 	int	i;
 	int	j;
-	double x;
-	double y;
-	double new_x;
-	double new_y;
+	float x;
+	float y;
+	float new_x;
+	float new_y;
 
 	i = 0;
 	while (i < grid->width)

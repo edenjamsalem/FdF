@@ -50,7 +50,7 @@ void	print_file(char ***file_elements)
 	}
 }
 
-double	rad(int	degrees)
+float	rad(int degrees)
 {
 	return (degrees * (PI / 180));
 }
@@ -59,18 +59,18 @@ void	recentre(t_grid_data *grid)
 {
 	int		i;
 	int		j;
-	double	sum_z;
-	double	x_first;
-	double	y_first;
-	double	x_end;
-	double	y_end;
+	float	sum_z;
+	float	x;
+	float	y;
+	float	x_end;
+	float	y_end;
 
-	x_first = grid->coords[0][0]->x;
-	y_first = grid->coords[0][0]->y;
+	x = grid->coords[0][0]->x;
+	y = grid->coords[0][0]->y;
 	x_end = grid->coords[grid->width - 1][grid->len - 1]->x;
 	y_end = grid->coords[grid->width - 1][grid->len - 1]->y;
-	grid->centre.x = (x_first + x_end) / 2;
-	grid->centre.y = (y_first + y_end) / 2;
+	grid->centre.x = (x + x_end) / 2;
+	grid->centre.y = (y + y_end) / 2;
 	sum_z = 0;
 	i = 0;
 	while (i < grid->width)
@@ -90,10 +90,11 @@ void	isometric_projection(t_grid_data *grid)
 	rot_z_axis(grid, 30);
 }
 
-double convert_dec(char *nbr)
+float convert_dec(char *nbr)
 {
+	if (!nbr)
+		return (0);
 	if (ft_strncmp(nbr, "0x", 2) == 0)
-		return ((double)ft_atoi_base(nbr, "0x123456789ABCDEF"));
-	else
-		return ((double)ft_atoi(nbr));
+		return ((float)ft_atoi_base(nbr, "0x123456789ABCDEF"));
+	return ((float)ft_atoi(nbr));
 }

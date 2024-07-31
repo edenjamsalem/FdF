@@ -4,8 +4,8 @@ void	zoom_in(t_grid_data *grid)
 {
 	int		i;
 	int		j;
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 
 	i = 0;
 	while (i < grid->width)
@@ -27,8 +27,8 @@ void	zoom_out(t_grid_data *grid)
 {
 	int		i;
 	int		j;
-	double	x;
-	double	y;
+	float	x;
+	float	y;
 
 	i = 0;
 	while (i < grid->width)
