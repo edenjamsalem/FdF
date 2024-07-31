@@ -1,5 +1,21 @@
 #include "FdF.h"
 
+int mouse_event(int button, int x, int y, t_mlx_data *mlx)
+{
+	(void)x;
+	(void)y;
+
+	clear_image(mlx);
+	if (button == SCROLL_UP)
+		zoom(&mlx->grid, 64);
+	if (button == SCROLL_DOWN)
+		zoom(&mlx->grid, -64);
+
+	find_centre(&mlx->grid);
+	draw_model(&mlx->img, &mlx->grid, 0xFFFFFFFF);
+	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
+	return (-1);
+}
 
 int	key_event(int keysym, t_mlx_data *mlx)
 {
@@ -19,11 +35,6 @@ int	key_event(int keysym, t_mlx_data *mlx)
 		rot_y_axis(&mlx->grid, 2);
 	if (keysym == E_KEY)
 		rot_y_axis(&mlx->grid, -2);
-
-	if (keysym == Z_KEY)
-		zoom(&mlx->grid, -64);
-	if (keysym == X_KEY)
-		zoom(&mlx->grid, 64);
 
 	if (keysym == RIGHT_KEY)
 		shift_x(&mlx->grid, 2);

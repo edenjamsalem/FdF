@@ -27,19 +27,21 @@
 # define STRUCT_NOTIFY_MSK	1L<<17
 
 // KEYSYMS
-# define ESC_KEY	0xff1b
-# define A_KEY		0x0061
-# define S_KEY		0x0073
-# define D_KEY		0x0064
-# define W_KEY		0x0077
-# define Q_KEY		0x0071	
-# define E_KEY		0x0065
-# define X_KEY		0x0078
-# define Z_KEY		0x007a
-# define UP_KEY		0xff52
-# define DOWN_KEY	0xff54
-# define LEFT_KEY	0xff51
-# define RIGHT_KEY	0xff53
+# define ESC_KEY		0xff1b
+# define A_KEY			0x0061
+# define S_KEY			0x0073
+# define D_KEY			0x0064
+# define W_KEY			0x0077
+# define Q_KEY			0x0071	
+# define E_KEY			0x0065
+# define X_KEY			0x0078
+# define Z_KEY			0x007a
+# define UP_KEY			0xff52
+# define DOWN_KEY		0xff54
+# define LEFT_KEY		0xff51
+# define RIGHT_KEY		0xff53
+# define SCROLL_UP		4
+# define SCROLL_DOWN	5
 
 # define PI	3.14159265358979323846
 
@@ -85,6 +87,8 @@ typedef struct	s_mlx_data
 }				t_mlx_data;
 
 int		key_event(int keysym, t_mlx_data *mlx);
+
+int		mouse_event(int button, int x, int y, t_mlx_data *mlx);
 
 int		close_window(t_mlx_data *mlx);
 
