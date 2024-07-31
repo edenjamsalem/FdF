@@ -52,13 +52,13 @@ int	key_event(int keysym, t_mlx_data *mlx)
 	if (keysym == E_KEY)
 		rot_y_axis(2, &mlx->grid);	
 	if (keysym == RIGHT_KEY)
-		shift('x', 2, &mlx->grid);
+		shift('x', 4, &mlx->grid);
 	if (keysym == LEFT_KEY)
-		shift('x', -2, &mlx->grid);
+		shift('x', -4, &mlx->grid);
 	if (keysym == UP_KEY)
-		shift('y', -2, &mlx->grid);
+		shift('y', -4, &mlx->grid);
 	if (keysym == DOWN_KEY)
-		shift('y', 2, &mlx->grid);
+		shift('y', 4, &mlx->grid);
 	draw_model(mlx, 0xFFFFFFFF);
 	return (0);
 }

@@ -1,7 +1,9 @@
 #include "../FdF.h"
 
-void	init_mlx_win(t_mlx_data *mlx)
+void	init_mlx(t_mlx_data *mlx)
 {
+	if (!(mlx->ptr = mlx_init()))
+		exit(EXIT_FAILURE);
 	mlx->win = mlx_new_window(mlx->ptr, WIN_LEN, WIN_HEIGHT, "FdF");
 	if (!mlx->win)
 	{
@@ -84,7 +86,7 @@ static void	init_grid_coords(t_grid_data *grid, char ***file_elements)
 				malloc_error();
 			grid->coords[i][j]->x = WIN_LEN / 4 + (box_len * j);
 			grid->coords[i][j]->y = WIN_HEIGHT / 4 + (box_width * i);
-			grid->coords[i][j]->z = convert_dec(file_elements[i][j]) * 3;
+			grid->coords[i][j]->z = convert_dec(file_elements[i][j]) * 4;
 			j++;
 		}
 		i++;

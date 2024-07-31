@@ -12,12 +12,10 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		return (1);
-	if (!(mlx.ptr = mlx_init()))
-		exit(EXIT_FAILURE);
 	fd = open(argv[1], O_RDONLY);
-	if (!fd)
+	if (fd < 0)
 		exit(EXIT_FAILURE);
-	init_mlx_win(&mlx);
+	init_mlx(&mlx);
 	init_img(&mlx.img, &mlx);
 	file_contents = read_file(fd);
 	mlx.file_elements = parse_file(file_contents);

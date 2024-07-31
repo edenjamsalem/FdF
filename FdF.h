@@ -109,7 +109,7 @@ char	*read_file(int fd);
 
 void	malloc_error();
 
-void 	init_mlx_win(t_mlx_data *mlx);
+void 	init_mlx(t_mlx_data *mlx);
 
 void	init_img(t_img *img, t_mlx_data *mlx);
 
