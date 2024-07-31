@@ -113,9 +113,9 @@ int		init_img(t_img *img, t_mlx_data *mlx);
 
 int		init_grid_data(t_grid_data *grid, char ***file_elements);
 
-void	recentre(t_grid_data *grid);
+void	find_centre(t_grid_data *grid);
 
-float	rad(int	degrees);
+float	rad(float degrees);
 
 void	isometric_projection(t_grid_data *grid);
 
@@ -123,18 +123,12 @@ float 	convert_dec(char *nbr);
 
 char	*find_offset(int x, int y, t_img *img);
 
-void	shift_left(t_grid_data *grid);
 
-void	shift_right(t_grid_data *grid);
+void	shift_x(t_grid_data *grid, int step);
 
-void	shift_up(t_grid_data *grid);
+void	shift_y(t_grid_data *grid, int step);
 
-void	shift_down(t_grid_data *grid);
-
-
-void	zoom_in(t_grid_data *grid);
-
-void	zoom_out(t_grid_data *grid);
+void	zoom(t_grid_data *grid, int factor);
 
 
 void	rot_x_axis(t_grid_data *grid, int angle);

@@ -72,6 +72,6 @@ int	init_grid_data(t_grid_data *grid, char ***file_elements)
 	grid->len = ft_2darr_len((void *)(file_elements[0]));
 	if (!init_grid_coords(grid, file_elements))
 		return (0);
-	recentre(grid);
+	find_centre(grid);
 	return (1);
 }

@@ -50,12 +50,12 @@ void	print_file(char ***file_elements)
 	}
 }
 
-float	rad(int degrees)
+float	rad(float degrees)
 {
 	return (degrees * (PI / 180));
 }
 
-void	recentre(t_grid_data *grid)
+void	find_centre(t_grid_data *grid)
 {
 	int		i;
 	int		j;

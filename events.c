@@ -41,19 +41,20 @@ int	key_event(int keysym, t_mlx_data *mlx)
 		rot_y_axis(&mlx->grid, -2);
 
 	if (keysym == Z_KEY)
-		zoom_in(&mlx->grid);
+		zoom(&mlx->grid, -64);
 	if (keysym == X_KEY)
-		zoom_out(&mlx->grid);
+		zoom(&mlx->grid, 64);
 
 	if (keysym == RIGHT_KEY)
-		shift_right(&mlx->grid);
+		shift_x(&mlx->grid, 2);
 	if (keysym == LEFT_KEY)
-		shift_left(&mlx->grid);
+		shift_x(&mlx->grid, -2);
 	if (keysym == UP_KEY)
-		shift_up(&mlx->grid);
+		shift_y(&mlx->grid, -2);
 	if (keysym == DOWN_KEY)
-		shift_down(&mlx->grid);
-	recentre(&mlx->grid);
+		shift_y(&mlx->grid, 2);
+
+	find_centre(&mlx->grid);
 	draw_grid(&mlx->img, &mlx->grid, 0xFFFFFFFF);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
 	return (-1);
