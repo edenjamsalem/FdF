@@ -33,14 +33,3 @@ void	free_coords(t_grid_data *grid)
 	}
 	free(grid->coords);
 }
-
-int	close_window(t_mlx_data *mlx)
-{
-	mlx_destroy_image(mlx->ptr, mlx->img.ptr);
-	mlx_destroy_window(mlx->ptr, mlx->win);
-	mlx_destroy_display(mlx->ptr);
-	free(mlx->ptr);
-	free_file(mlx->file_elements);
-	free_coords(&mlx->grid);
-	exit(EXIT_SUCCESS);
-}

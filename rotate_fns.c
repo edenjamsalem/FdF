@@ -6,9 +6,11 @@ void	rot_x_axis(t_grid_data *grid, int angle)
 	int	j;
 	double y;
 	double z;
-	double new_y;
-	double new_z;
+	double cos_a;
+	double sin_a;
 
+	cos_a = cos(rad(angle));
+	sin_a = sin(rad(angle));
 	i = 0;
 	while (i < grid->width)
 	{
@@ -17,10 +19,8 @@ void	rot_x_axis(t_grid_data *grid, int angle)
 		{
 			y = grid->coords[i][j]->y - grid->centre.y;
 			z = grid->coords[i][j]->z - grid->centre.z;
-			new_y = (y * cos(rad(angle))) - (z * sin(rad(angle)));
-			new_z = (y * sin(rad(angle))) + (z * cos(rad(angle)));
-			grid->coords[i][j]->y =  new_y + grid->centre.y;
-			grid->coords[i][j]->z =  new_z + grid->centre.z;
+			grid->coords[i][j]->y =  (y * cos_a) - (z * sin_a) + grid->centre.y;
+			grid->coords[i][j]->z =  (y * sin_a) + (z * cos_a) + grid->centre.z;
 			j++;
 		}
 		i++;
@@ -33,9 +33,11 @@ void	rot_y_axis(t_grid_data *grid, int angle)
 	int	j;
 	double x;
 	double z;
-	double new_x;
-	double new_z;
+	double cos_a;
+	double sin_a;
 
+	cos_a = cos(rad(angle));
+	sin_a = sin(rad(angle));
 	i = 0;
 	while (i < grid->width)
 	{
@@ -44,10 +46,8 @@ void	rot_y_axis(t_grid_data *grid, int angle)
 		{
 			x = grid->coords[i][j]->x - grid->centre.x;
 			z = grid->coords[i][j]->z - grid->centre.z;
-			new_x = (x * cos(rad(angle))) + (z * sin(rad(angle)));
-			new_z = -(x * sin(rad(angle))) + (z * cos(rad(angle)));
-			grid->coords[i][j]->x =  new_x + grid->centre.x;
-			grid->coords[i][j]->z =  new_z + grid->centre.z;
+			grid->coords[i][j]->x =  (x * cos_a) + (z * sin_a) + grid->centre.x;
+			grid->coords[i][j]->z =  -(x * sin_a) + (z * cos_a) + grid->centre.z;
 			j++;
 		}
 		i++;
@@ -60,9 +60,11 @@ void	rot_z_axis(t_grid_data *grid, int angle)
 	int	j;
 	double x;
 	double y;
-	double new_x;
-	double new_y;
+	double cos_a;
+	double sin_a;
 
+	cos_a = cos(rad(angle));
+	sin_a = sin(rad(angle));
 	i = 0;
 	while (i < grid->width)
 	{
@@ -71,10 +73,8 @@ void	rot_z_axis(t_grid_data *grid, int angle)
 		{
 			x = grid->coords[i][j]->x - grid->centre.x;
 			y = grid->coords[i][j]->y - grid->centre.y;
-			new_x = (x * cos(rad(angle))) - (y * sin(rad(angle)));
-			new_y = (x * sin(rad(angle))) + (y * cos(rad(angle)));
-			grid->coords[i][j]->x =  new_x + grid->centre.x;
-			grid->coords[i][j]->y =  new_y + grid->centre.y;
+			grid->coords[i][j]->x =  (x * cos_a) - (y * sin_a) + grid->centre.x;
+			grid->coords[i][j]->y =  (x * sin_a) + (y * cos_a) + grid->centre.y;
 			j++;
 		}
 		i++;

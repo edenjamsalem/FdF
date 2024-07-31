@@ -24,7 +24,7 @@ LIBFTDIR = ../libft
 LIBFT = $(LIBFTDIR)/libft.a
 
 SRCS =	FdF.c \
-		pixel_put.c \
+		put_pixel.c \
 		utils.c \
 		events.c \
 		draw_line.c \
