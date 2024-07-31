@@ -1,4 +1,4 @@
-#include "FdF.h"
+#include "../FdF.h"
 
 void	init_mlx_win(t_mlx_data *mlx)
 {
@@ -33,12 +33,40 @@ void	init_img(t_img *img, t_mlx_data *mlx)
 	}
 }
 
+void	init_centre(t_grid_data *grid)
+{
+	int		i;
+	int		j;
+	double	sum_x;
+	double	sum_y;
+	double	sum_z;
+	int		total;
+
+	total = grid->width * grid->len;
+	sum_x = sum_y = sum_z = 0;
+	i = 0;
+	while (i < grid->width)
+	{
+		j = 0;
+		while (j < grid->len)
+		{
+			sum_x += grid->coords[i][j]->x;
+			sum_y += grid->coords[i][j]->y;
+			sum_z += grid->coords[i][j++]->z;
+		}
+		i++;
+	}
+	grid->centre.x = sum_x / total;
+	grid->centre.y = sum_y / total;
+	grid->centre.z = sum_z / total;
+}
+
 static void	init_grid_coords(t_grid_data *grid, char ***file_elements)
 {
 	int 	i;
 	int 	j;
-	double	box_len;
-	double	box_width;
+	float	box_len;
+	float	box_width;
 	
 	box_len = (WIN_LEN / 2) / grid->len - 1;
 	box_width = (WIN_HEIGHT / 2) / grid->width - 1;
@@ -68,6 +96,6 @@ void	init_grid_data(t_grid_data *grid, char ***file_elements)
 	grid->width = ft_2darr_len((void *)(file_elements)); 
 	grid->len = ft_2darr_len((void *)(file_elements[0]));
 	init_grid_coords(grid, file_elements);
-	find_centre(grid);
+	init_centre(grid);
 	recentre(grid);
 }

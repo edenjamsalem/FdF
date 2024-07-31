@@ -1,6 +1,6 @@
-#include "FdF.h"
+#include "../FdF.h"
 
-void	rot_x_axis(t_grid_data *grid, int angle)
+void	rot_x_axis(int angle, t_grid_data *grid)
 {
 	int	i;
 	int	j;
@@ -27,7 +27,7 @@ void	rot_x_axis(t_grid_data *grid, int angle)
 	}
 }
 
-void	rot_y_axis(t_grid_data *grid, int angle)
+void	rot_y_axis(int angle, t_grid_data *grid)
 {
 	int	i;
 	int	j;
@@ -54,7 +54,7 @@ void	rot_y_axis(t_grid_data *grid, int angle)
 	}
 }
 
-void	rot_z_axis(t_grid_data *grid, int angle)
+void	rot_z_axis(int angle, t_grid_data *grid)
 {
 	int	i;
 	int	j;
@@ -75,6 +75,59 @@ void	rot_z_axis(t_grid_data *grid, int angle)
 			y = grid->coords[i][j]->y - grid->centre.y;
 			grid->coords[i][j]->x =  (x * cos_a) - (y * sin_a) + grid->centre.x;
 			grid->coords[i][j]->y =  (x * sin_a) + (y * cos_a) + grid->centre.y;
+			j++;
+		}
+		i++;
+	}
+}
+
+void	shift(char axis, int step, t_grid_data *grid)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	if (axis == 'x')
+	{	
+		while (i < grid->width)
+		{
+			j = 0;
+			while (j < grid->len)
+				grid->coords[i][j++]->x += step;
+			i++;
+		}
+	}
+	else if (axis == 'y')
+	{	
+		while (i < grid->width)
+		{
+			j = 0;
+			while (j < grid->len)
+				grid->coords[i][j++]->y += step;
+			i++;
+		}
+	}
+}
+
+void	zoom(t_grid_data *grid, double factor)
+{
+	int		i;
+	int		j;
+	double	x;
+	double	y;
+	double	scale;
+
+	scale = 1.0 / factor;
+	i = 0;
+	while (i < grid->width)
+	{
+		j = 0;
+		while (j < grid->len)
+		{
+			x =  (grid->coords[i][j]->x - grid->centre.x) * scale;
+			y =  (grid->coords[i][j]->y - grid->centre.y) * scale;
+			grid->coords[i][j]->x += x;
+			grid->coords[i][j]->y += y;
 			j++;
 		}
 		i++;

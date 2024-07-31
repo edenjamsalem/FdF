@@ -1,4 +1,4 @@
-#include "FdF.h"
+#include "../FdF.h"
 
 void	malloc_error()
 {
@@ -74,4 +74,21 @@ char	***parse_file(char *file_contents)
 	free(rows);
 	row_len = ft_2darr_len((void *)file_elements[0]);
 	return (file_elements);
+}
+
+void	free_file(char ***file_elements)
+{
+	int			i;
+	int			j;
+	
+	i = 0;
+	while (file_elements[i])
+	{
+		j = 0;
+		while (file_elements[i][j])
+			free(file_elements[i][j++]);
+		free(file_elements[i]);
+		i++;
+	}
+	free(file_elements);
 }

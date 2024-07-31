@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-
 //	WINDOW SIZE
 # define WIN_LEN	1200
 # define WIN_HEIGHT	800
@@ -94,11 +93,11 @@ int		close_window(t_mlx_data *mlx);
 
 void	put_pixel(t_img *img, t_coord *coord, int colour);
 
+char	*find_offset(int x, int y, t_img *img);
+
 void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour);
 
-void	draw_grid_points(t_img *img, t_grid_data *grid, int colour);
-
-void	draw_model(t_img *img, t_grid_data *grid, int colour);
+void	draw_model(t_mlx_data *mlx, int colour);
 
 void	free_file(char ***file_elements);
 
@@ -108,8 +107,6 @@ char	***parse_file(char *file_contents);
 
 char	*read_file(int fd);
 
-void	clear_image(t_mlx_data *mlx);
-
 void	malloc_error();
 
 void 	init_mlx_win(t_mlx_data *mlx);
@@ -118,7 +115,7 @@ void	init_img(t_img *img, t_mlx_data *mlx);
 
 void	init_grid_data(t_grid_data *grid, char ***file_elements);
 
-void	find_centre(t_grid_data *grid);
+void	init_centre(t_grid_data *grid);
 
 void	recentre(t_grid_data *grid);
 
@@ -128,18 +125,14 @@ void	isometric_projection(t_grid_data *grid);
 
 double 	convert_dec(char *nbr);
 
-char	*find_offset(int x, int y, t_img *img);
 
+void	rot_x_axis(int angle, t_grid_data *grid);
 
-void	shift_x(t_grid_data *grid, int step);
+void	rot_y_axis(int angle, t_grid_data *grid);
 
-void	shift_y(t_grid_data *grid, int step);
+void	rot_z_axis(int angle, t_grid_data *grid);
+
+void	shift(char var, int step, t_grid_data *grid);
 
 void	zoom(t_grid_data *grid, double factor);
 
-
-void	rot_x_axis(t_grid_data *grid, int angle);
-
-void	rot_y_axis(t_grid_data *grid, int angle);
-
-void	rot_z_axis(t_grid_data *grid, int angle);

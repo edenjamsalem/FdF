@@ -1,6 +1,24 @@
-#include "FdF.h"
+#include "../FdF.h"
 
-void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line, int colour)
+static bool within_screen(int x, int y)
+{
+	if (x > 0 && x < WIN_LEN && y > 0 && y < WIN_HEIGHT)
+		return (true);
+	return (false);
+}
+
+void	put_pixel(t_img *img, t_coord *coord, int colour)
+{
+	char	*dst;
+
+	if (within_screen(coord->x, coord->y))
+	{
+		dst = find_offset(coord->x, coord->y, img);
+		*((unsigned int *)dst) = colour;
+	}
+}
+
+static void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line, int colour)
 {
 	int		offset;
 	double	delta;
@@ -23,7 +41,7 @@ void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line, int 
 		}
 	}
 }
-void	increment_by_x(t_img *img, t_coord *start, t_coord *end, t_line *line, int colour)
+static void	increment_by_x(t_img *img, t_coord *start, t_coord *end, t_line *line, int colour)
 {
 	int		offset;
 	double	delta;

@@ -14,41 +14,38 @@ NAME =	FdF
 
 CFLAGS = -Wall -Werror -Wextra -g3
 
-OBJDIR = ./build
-OBJS = $(SRCS:%.c=$(OBJDIR)/%.o)
+SRCDIR = ./srcs
+SRCS =	$(SRCDIR)/FdF.c \
+		$(SRCDIR)/utils.c \
+		$(SRCDIR)/events.c \
+		$(SRCDIR)/draw_line.c \
+		$(SRCDIR)/draw_model.c \
+		$(SRCDIR)/init_fns.c \
+		$(SRCDIR)/permutations.c \
+		$(SRCDIR)/file_handling.c
 
-LIBMLXDIR = mlx_linux
-LIBMLX = $(LIBMLXDIR)/libmlx_Linux.a
+OBJDIR = ./build
+OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+
+MLXDIR = mlx_linux
+MLXLIB = $(MLXDIR)/libmlx_Linux.a
 
 LIBFTDIR = ../libft
 LIBFT = $(LIBFTDIR)/libft.a
 
-SRCS =	FdF.c \
-		put_pixel.c \
-		utils.c \
-		events.c \
-		draw_line.c \
-		draw_grid.c \
-		init_fns.c \
-		translate_fns.c \
-		zoom.c \
-		rotate_fns.c \
-		file_handling.c \
-		free_mem.c
+all: $(OBJDIR) $(NAME) $(MLXLIB) $(LIBFT)
 
-all: $(OBJDIR) $(NAME) $(LIBMLX) $(LIBFT)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	cc $(CFLAGS) -I/usr/include -I$(MLXDIR) -I$(SRCDIR) -c $< -o $@
 
-$(OBJDIR)/%.o: %.c
-	cc $(CFLAGS) -I/usr/include -Imlx_linux -c $< -o $@
-
-$(NAME): $(LIBMLX) $(LIBFT) $(OBJDIR) $(OBJS)
-	cc $(CFLAGS) $(OBJS) $(LIBMLX) $(LIBFT) -lXext -lX11 -lm -lz -o $@
+$(NAME): $(MLXLIB) $(LIBFT) $(OBJDIR) $(OBJS)
+	cc $(CFLAGS) $(OBJS) $(MLXLIB) $(LIBFT) -lXext -lX11 -lm -lz -o $@
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
-$(LIBMLX):
-	make -C $(LIBMLXDIR) all
+$(MLXLIB):
+	make -C $(MLXDIR) all
 
 $(LIBFT):
 	make -C $(LIBFTDIR) all
