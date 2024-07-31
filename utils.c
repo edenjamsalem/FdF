@@ -34,53 +34,53 @@ void	free_coords(t_grid_data *grid)
 	free(grid->coords);
 }
 
-void	print_file(char ***file_elements)
-{
-	int			i;
-	int			j;
-	
-	i = -1;
-	while (file_elements[i])
-	{
-		j = -1;
-		while (file_elements[i][j])
-			ft_printf("%s ", file_elements[i][j++]);
-		ft_printf("\n");
-		i++;
-	}
-}
-
 float	rad(float degrees)
 {
 	return (degrees * (PI / 180));
+}
+
+void	recentre(t_grid_data *grid)
+{
+	t_coord centre_screen;
+	int		dx;
+	int		dy;
+
+	centre_screen.x = WIN_LEN / 2;
+	centre_screen.y = WIN_HEIGHT / 2;
+	dx = grid->centre.x - centre_screen.x;
+	dy = grid->centre.y - centre_screen.y;
+	shift_x(grid, -dx);	
+	shift_y(grid, -dy);	
 }
 
 void	find_centre(t_grid_data *grid)
 {
 	int		i;
 	int		j;
+	float	sum_x;
+	float	sum_y;
 	float	sum_z;
-	float	x;
-	float	y;
-	float	x_end;
-	float	y_end;
+	int		total;
 
-	x = grid->coords[0][0]->x;
-	y = grid->coords[0][0]->y;
-	x_end = grid->coords[grid->width - 1][grid->len - 1]->x;
-	y_end = grid->coords[grid->width - 1][grid->len - 1]->y;
-	grid->centre.x = (x + x_end) / 2;
-	grid->centre.y = (y + y_end) / 2;
+	sum_x = 0;
+	sum_y = 0;
 	sum_z = 0;
+	total = grid->width * grid->len;
 	i = 0;
 	while (i < grid->width)
 	{
 		j = 0;
 		while (j < grid->len)
+		{
+			sum_x += grid->coords[i][j]->x;
+			sum_y += grid->coords[i][j]->y;
 			sum_z += grid->coords[i][j++]->z;
+		}
 		i++;
 	}
-	grid->centre.z = sum_z / (grid->width * grid->len);
+	grid->centre.x = sum_x / total;
+	grid->centre.y = sum_y / total;
+	grid->centre.z = sum_z / total;
 }
 
 void	isometric_projection(t_grid_data *grid)
@@ -97,4 +97,24 @@ float convert_dec(char *nbr)
 	if (ft_strncmp(nbr, "0x", 2) == 0)
 		return ((float)ft_atoi_base(nbr, "0x123456789ABCDEF"));
 	return ((float)ft_atoi(nbr));
+}
+
+void	clear_image(t_mlx_data *mlx)
+{
+	int	x;
+	int	y;
+	char *dst;
+
+	y = 0;
+	while (y < WIN_HEIGHT)
+	{
+		x = 0;
+		while (x < WIN_LEN)
+		{
+			dst = find_offset(x, y, &mlx->img);
+			*((unsigned int *)dst) = 0x00000000;
+			x++;
+		}
+		y++;
+	}
 }

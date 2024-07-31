@@ -48,7 +48,7 @@ static void	draw_vertical_lines(t_img *img, t_grid_data *grid, int colour)
 	}
 }
 
-void	draw_grid(t_img *img, t_grid_data *grid, int colour)
+void	draw_model(t_img *img, t_grid_data *grid, int colour)
 {
 	draw_horizontal_lines(img, grid, colour);
 	draw_vertical_lines(img, grid, colour);
@@ -68,7 +68,7 @@ void draw_grid_points(t_img *img, t_grid_data *grid, int colour)
 		{
 			start.x = grid->coords[i][j]->x;
 			start.y = grid->coords[i][j]->y;
-			my_mlx_pixel_put(img, &start, colour);
+			put_pixel(img, &start, colour);
 			i++;
 		}
 		j++;

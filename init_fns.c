@@ -73,5 +73,6 @@ int	init_grid_data(t_grid_data *grid, char ***file_elements)
 	if (!init_grid_coords(grid, file_elements))
 		return (0);
 	find_centre(grid);
+	recentre(grid);
 	return (1);
 }

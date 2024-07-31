@@ -31,7 +31,7 @@ SRCS =	FdF.c \
 		draw_grid.c \
 		init_fns.c \
 		translate_fns.c \
-		zoom_fns.c \
+		zoom.c \
 		rotate_fns.c \
 		file_handling.c
 

@@ -88,23 +88,23 @@ int		key_event(int keysym, t_mlx_data *mlx);
 
 int		close_window(t_mlx_data *mlx);
 
-void	my_mlx_pixel_put(t_img *img, t_coord *coord, int colour);
+void	put_pixel(t_img *img, t_coord *coord, int colour);
 
 void	draw_line(t_img *img, t_coord *start, t_coord *end, int colour);
 
 void	draw_grid_points(t_img *img, t_grid_data *grid, int colour);
 
-void	draw_grid(t_img *img, t_grid_data *grid, int colour);
+void	draw_model(t_img *img, t_grid_data *grid, int colour);
 
 void	free_file(char ***file_elements);
 
 void	free_coords(t_grid_data *grid);
 
-void	print_file(char ***file_elements);
-
 char	***parse_file(char *file_contents);
 
 char	*read_file(int fd);
+
+void	clear_image(t_mlx_data *mlx);
 
 
 int 	init_mlx_win(t_mlx_data *mlx);
@@ -114,6 +114,8 @@ int		init_img(t_img *img, t_mlx_data *mlx);
 int		init_grid_data(t_grid_data *grid, char ***file_elements);
 
 void	find_centre(t_grid_data *grid);
+
+void	recentre(t_grid_data *grid);
 
 float	rad(float degrees);
 

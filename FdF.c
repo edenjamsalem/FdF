@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	mlx.file_elements = parse_file(file_contents);
 	init_grid_data(&mlx.grid, mlx.file_elements);
 	isometric_projection(&mlx.grid);
-	draw_grid(&mlx.img, &mlx.grid, 0xFFFFFFFF);
+	draw_model(&mlx.img, &mlx.grid, 0xFFFFFFFF);
 	mlx_put_image_to_window(mlx.ptr, mlx.win, mlx.img.ptr, 0, 0);
 	//mlx_hook(&mlx.win, DESTROY_EVT, STRUCT_NOTIFY_MSK, close_window, &mlx); // NOT WORKING
 	mlx_hook(mlx.win, KEY_PRS_EVT, KEY_PRS_MSK, key_event, &mlx);

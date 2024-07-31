@@ -12,7 +12,7 @@ static bool within_screen(int x, int y)
 	return (false);
 }
 
-void	my_mlx_pixel_put(t_img *img, t_coord *coord, int colour)
+void	put_pixel(t_img *img, t_coord *coord, int colour)
 {
 	char	*dst;
 
