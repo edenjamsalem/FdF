@@ -1,12 +1,12 @@
 #include "FdF.h"
 
-void	zoom(t_grid_data *grid, float factor)
+void	zoom(t_grid_data *grid, double factor)
 {
 	int		i;
 	int		j;
-	float	x;
-	float	y;
-	float	scale;
+	double	x;
+	double	y;
+	double	scale;
 
 	scale = 1.0f / factor;
 	i = 0;

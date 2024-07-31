@@ -31,9 +31,9 @@ int	key_event(int keysym, t_mlx_data *mlx)
 	if (keysym == S_KEY)
 		rot_x_axis(&mlx->grid, -2);
 	if (keysym == Q_KEY)
-		rot_y_axis(&mlx->grid, 2);
-	if (keysym == E_KEY)
 		rot_y_axis(&mlx->grid, -2);
+	if (keysym == E_KEY)
+		rot_y_axis(&mlx->grid, 2);
 
 	if (keysym == RIGHT_KEY)
 		shift_x(&mlx->grid, 2);
@@ -44,8 +44,8 @@ int	key_event(int keysym, t_mlx_data *mlx)
 	if (keysym == DOWN_KEY)
 		shift_y(&mlx->grid, 2);
 
-	find_centre(&mlx->grid);
 	draw_model(&mlx->img, &mlx->grid, 0xFFFFFFFF);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
-	return (-1);
+	find_centre(&mlx->grid);
+	return (0);
 }

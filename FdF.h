@@ -56,17 +56,17 @@ typedef struct	s_img
 
 typedef struct	s_line
 {
-	float	dx;
-	float	dy;
+	double	dx;
+	double	dy;
 	int		step;
 }				t_line;
 
 
 typedef struct	s_coord
 {
-	float	x;
-	float	y;
-	float	z;
+	double	x;
+	double	y;
+	double	z;
 }				t_coord;
 
 typedef struct	s_grid_data
@@ -122,11 +122,11 @@ void	find_centre(t_grid_data *grid);
 
 void	recentre(t_grid_data *grid);
 
-float	rad(float degrees);
+double	rad(double degrees);
 
 void	isometric_projection(t_grid_data *grid);
 
-float 	convert_dec(char *nbr);
+double 	convert_dec(char *nbr);
 
 char	*find_offset(int x, int y, t_img *img);
 
@@ -135,7 +135,7 @@ void	shift_x(t_grid_data *grid, int step);
 
 void	shift_y(t_grid_data *grid, int step);
 
-void	zoom(t_grid_data *grid, float factor);
+void	zoom(t_grid_data *grid, double factor);
 
 
 void	rot_x_axis(t_grid_data *grid, int angle);

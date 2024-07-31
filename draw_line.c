@@ -3,7 +3,7 @@
 void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line, int colour)
 {
 	int		offset;
-	float	delta;
+	double	delta;
 	int		threshold;
 	int		threshold_inc;
 
@@ -26,7 +26,7 @@ void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line, int 
 void	increment_by_x(t_img *img, t_coord *start, t_coord *end, t_line *line, int colour)
 {
 	int		offset;
-	float	delta;
+	double	delta;
 	int		threshold;
 	int		threshold_inc;
 

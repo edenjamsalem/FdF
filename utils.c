@@ -1,7 +1,7 @@
 #include "FdF.h"
 
 
-float	rad(float degrees)
+double	rad(double degrees)
 {
 	return (degrees * (PI / 180));
 }
@@ -24,9 +24,9 @@ void	find_centre(t_grid_data *grid)
 {
 	int		i;
 	int		j;
-	float	sum_x;
-	float	sum_y;
-	float	sum_z;
+	double	sum_x;
+	double	sum_y;
+	double	sum_z;
 	int		total;
 
 	total = grid->width * grid->len;
@@ -55,13 +55,13 @@ void	isometric_projection(t_grid_data *grid)
 	rot_z_axis(grid, 30);
 }
 
-float convert_dec(char *nbr)
+double convert_dec(char *nbr)
 {
 	if (!nbr)
 		return (0);
 	if (ft_strncmp(nbr, "0x", 2) == 0)
-		return ((float)ft_atoi_base(nbr, "0x123456789ABCDEF"));
-	return ((float)ft_atoi(nbr));
+		return ((double)ft_atoi_base(nbr, "0x123456789ABCDEF"));
+	return ((double)ft_atoi(nbr));
 }
 
 void	clear_image(t_mlx_data *mlx)
