@@ -87,12 +87,47 @@ void	init_grid_scale(t_grid_data *grid)
 	}
 }
 
+float	find_t(double z, t_grid_data *grid)
+{
+	double z_min;
+	double z_max;
+
+	z_min = grid->range.z_min;
+	z_max = grid->range.z_max;
+	return ((z - z_min) / (z_max - z_min));
+}
+
+void	init_grid_colours(t_grid_data *grid)
+{
+	t_colour	base;
+	t_colour	top;
+	float		t;
+	int			i;
+	int			j;
+
+	base = hex_to_rgb(WHITE);
+	top = hex_to_rgb(PURPLE);
+	i = 0;
+	while (i < grid->width)
+	{
+		j = 0;
+		while (j < grid->len)
+		{
+			t = find_t(grid->coords[i][j]->z, grid);
+			grid->coords[i][j]->colour = terp_colour(base, top, t);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	init_grid_data(t_mlx_data *mlx)
 {
 	mlx->grid.width = ft_2darr_len((void *)(mlx->file_data)); 
 	mlx->grid.len = ft_2darr_len((void *)(mlx->file_data[0]));
 	init_grid_coords(&mlx->grid, mlx);
 	init_grid_scale(&mlx->grid);
+	init_grid_colours(&mlx->grid);
 	scale_img(&mlx->grid);
 	find_img_centre(&mlx->grid);
 	recentre_img(&mlx->grid);

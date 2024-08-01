@@ -42,7 +42,7 @@
 
 
 // Colours
-# define WHITE	0xFFFFFFFF
+# define WHITE	0xFFF8F8FF
 # define RED	0xFFFF0000
 # define GREEN	0xFF00FF00
 # define BLUE	0xFF0000FF
@@ -66,12 +66,21 @@ typedef struct	s_line
 	int		step;
 }				t_line;
 
+typedef struct	s_colour
+{
+	unsigned char t;
+	unsigned char r;
+	unsigned char g;
+	unsigned char b;
+}				t_colour;
 
 typedef struct	s_coord
 {
-	double	x;
-	double	y;
-	double	z;
+	double		x;
+	double		y;
+	double		z;
+	t_colour	colour;
+	
 }				t_coord;
 
 typedef struct	s_scale
@@ -159,4 +168,14 @@ void	rot_z_axis(int angle, t_grid_data *grid);
 void	shift(char var, int step, t_grid_data *grid);
 
 void	zoom(t_grid_data *grid, double factor);
+
+
+int			rgb_to_hex(t_colour colour);
+
+t_colour	hex_to_rgb(int hex);
+
+t_colour	terp_colour(t_colour color_1, t_colour color_2, float t);
+
+float		find_t(double z, t_grid_data *grid);
+
 
