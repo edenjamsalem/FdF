@@ -18,9 +18,9 @@ int	main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	init_mlx_data(&mlx);
 	init_img_data(&mlx.img, &mlx);
-	file_contents = read_file(fd);
-	mlx.file_elements = parse_file(file_contents);
-	init_grid_data(&mlx.grid, mlx.file_elements);
+	file_contents = read_file(fd, &mlx);
+	mlx.file_elements = parse_file(file_contents, &mlx);
+	init_grid_data(&mlx);
 	isometric_projection(&mlx.grid);
 	draw_model(&mlx);
 	mlx_hook(mlx.win, KEY_PRS_EVT, KEY_PRS_MSK, key_event, &mlx);

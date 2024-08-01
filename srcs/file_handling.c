@@ -1,12 +1,6 @@
 #include "../FdF.h"
 
-void	malloc_error()
-{
-	perror("Malloc Error");
-	exit(EXIT_FAILURE);
-}
-
-static char	*ft_strjoin_free(char *s1, char *s2)
+static char	*ft_strjoin_free(char *s1, char *s2, t_mlx_data *mlx)
 {
 	char	*new_str;
 	int		tot_len;
@@ -16,7 +10,7 @@ static char	*ft_strjoin_free(char *s1, char *s2)
 	tot_len = ft_strlen(s1) + ft_strlen(s2);
 	new_str = malloc(sizeof(char) * (tot_len + 1));
 	if (!new_str)
-		malloc_error();
+		malloc_error(mlx);
 	i = 0;
 	while (s1[i])
 	{
@@ -32,25 +26,25 @@ static char	*ft_strjoin_free(char *s1, char *s2)
 	return (new_str);
 }
 
-char	*read_file(int fd)
+char	*read_file(int fd, t_mlx_data *mlx)
 {
 	char	*line;
 	char 	*file_contents;
 
 	file_contents = malloc(sizeof(char));
 	if (!file_contents)
-		malloc_error();
+		malloc_error(mlx);
 	file_contents[0] = '\0';
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			return (file_contents); 
-		file_contents = ft_strjoin_free(file_contents, line);
+		file_contents = ft_strjoin_free(file_contents, line, mlx);
 	}
 }
 
-char	***parse_file(char *file_contents)
+char	***parse_file(char *file_contents, t_mlx_data *mlx)
 {
 	int		i;
 	int		row_count;
@@ -62,7 +56,7 @@ char	***parse_file(char *file_contents)
 	row_count = ft_2darr_len((void *)rows);
 	file_elements = malloc(sizeof(char **) * (row_count + 1));
 	if (!file_elements)
-		malloc_error();
+		malloc_error(mlx);
 	i = 0;
 	while (i < row_count)
 	{
@@ -76,19 +70,3 @@ char	***parse_file(char *file_contents)
 	return (file_elements);
 }
 
-void	free_file(char ***file_elements)
-{
-	int			i;
-	int			j;
-	
-	i = 0;
-	while (file_elements[i])
-	{
-		j = 0;
-		while (file_elements[i][j])
-			free(file_elements[i][j++]);
-		free(file_elements[i]);
-		i++;
-	}
-	free(file_elements);
-}

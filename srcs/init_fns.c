@@ -63,7 +63,7 @@ void	init_centre(t_grid_data *grid)
 	grid->centre.z = sum_z / total;
 }
 
-static void	init_grid_coords(t_grid_data *grid, char ***file_elements)
+static void	init_grid_coords(t_grid_data *grid, t_mlx_data *mlx)
 {
 	int 	i;
 	int 	j;
@@ -73,31 +73,31 @@ static void	init_grid_coords(t_grid_data *grid, char ***file_elements)
 	box_len = (WIN_LEN / 2) / grid->len - 1;
 	box_width = (WIN_HEIGHT / 2) / grid->width - 1;
 	if (!(grid->coords = malloc(sizeof(t_coord **) * grid->width)))
-		malloc_error();
+		malloc_error(mlx);
 	i = 0;
 	while (i < grid->width)
 	{
 		if (!(grid->coords[i] = malloc(sizeof(t_coord *) * grid->len)))
-			malloc_error();
+			malloc_error(mlx);
 		j = 0;
 		while (j < grid->len)
 		{
 			if (!(grid->coords[i][j] = malloc(sizeof(t_coord))))
-				malloc_error();
+				malloc_error(mlx);
 			grid->coords[i][j]->x = WIN_LEN / 4 + (box_len * j);
 			grid->coords[i][j]->y = WIN_HEIGHT / 4 + (box_width * i);
-			grid->coords[i][j]->z = convert_dec(file_elements[i][j]) * 4;
+			grid->coords[i][j]->z = convert_dec(mlx->file_elements[i][j]) * 4;
 			j++;
 		}
 		i++;
 	}
 }
 
-void	init_grid_data(t_grid_data *grid, char ***file_elements)
+void	init_grid_data(t_mlx_data *mlx)
 {
-	grid->width = ft_2darr_len((void *)(file_elements)); 
-	grid->len = ft_2darr_len((void *)(file_elements[0]));
-	init_grid_coords(grid, file_elements);
-	init_centre(grid);
-	recentre(grid);
+	mlx->grid.width = ft_2darr_len((void *)(mlx->file_elements)); 
+	mlx->grid.len = ft_2darr_len((void *)(mlx->file_elements[0]));
+	init_grid_coords(&mlx->grid, mlx);
+	init_centre(&mlx->grid);
+	recentre_img(&mlx->grid);
 }

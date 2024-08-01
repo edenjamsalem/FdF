@@ -107,27 +107,32 @@ void	free_file(char ***file_elements);
 
 void	free_coords(t_grid_data *grid);
 
-char	***parse_file(char *file_contents);
+char	***parse_file(char *file_contents, t_mlx_data *mlx);
 
-char	*read_file(int fd);
+char	*read_file(int fd, t_mlx_data *mlx);
 
-void	malloc_error();
+void	malloc_error(t_mlx_data *mlx);
 
 void 	init_mlx_data(t_mlx_data *mlx);
 
 void	init_img_data(t_img *img, t_mlx_data *mlx);
 
-void	init_grid_data(t_grid_data *grid, char ***file_elements);
+void	init_grid_data(t_mlx_data *mlx);
 
 void	init_centre(t_grid_data *grid);
 
-void	recentre(t_grid_data *grid);
+void	recentre_img(t_grid_data *grid);
 
 double	rad(double degrees);
 
 void	isometric_projection(t_grid_data *grid);
 
 double 	convert_dec(char *nbr);
+
+void	free_mem(t_mlx_data *mlx);
+
+void	clear_img(t_mlx_data *mlx);
+
 
 
 void	rot_x_axis(int angle, t_grid_data *grid);

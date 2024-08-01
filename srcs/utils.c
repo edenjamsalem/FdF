@@ -19,7 +19,7 @@ double convert_dec(char *nbr)
 	return ((double)ft_atoi(nbr));
 }
 
-void	recentre(t_grid_data *grid)
+void	recentre_img(t_grid_data *grid)
 {
 	t_coord centre_screen;
 	int		dx;
@@ -33,19 +33,23 @@ void	recentre(t_grid_data *grid)
 	shift('y', -dy, grid);	
 }
 
-void	free_coords(t_grid_data *grid)
+void	clear_img(t_mlx_data *mlx)
 {
-	int 	i;
-	int 	j;
-	
-	i = 0;
-	while (i < grid->width)
+	int	x;
+	int	y;
+	char *dst;
+
+	y = 0;
+	while (y < WIN_HEIGHT)
 	{
-		j = 0;
-		while (j < grid->len)
-			free(grid->coords[i][j++]);
-		free(grid->coords[i]);
-		i++;
+		x = 0;
+		while (x < WIN_LEN)
+		{
+			dst = find_offset(x, y, &mlx->img);
+			*((unsigned int *)dst) = 0x00000000;
+			x++;
+		}
+		y++;
 	}
-	free(grid->coords);
 }
+
