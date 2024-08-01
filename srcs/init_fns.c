@@ -27,51 +27,19 @@ void	init_img_data(t_img *img, t_mlx_data *mlx)
 							&mlx->img.line_len, &mlx->img.endian);
 	if (!img->addr)
 	{
-		free(mlx->img.ptr);
 		mlx_destroy_window(mlx->ptr, mlx->win);
 		mlx_destroy_display(mlx->ptr);
+		free(mlx->img.ptr);
 		free(mlx->ptr);
 		exit(EXIT_FAILURE);
 	}
-}
-
-void	init_centre(t_grid_data *grid)
-{
-	int		i;
-	int		j;
-	double	sum_x;
-	double	sum_y;
-	double	sum_z;
-	int		total;
-
-	total = grid->width * grid->len;
-	sum_x = sum_y = sum_z = 0;
-	i = 0;
-	while (i < grid->width)
-	{
-		j = 0;
-		while (j < grid->len)
-		{
-			sum_x += grid->coords[i][j]->x;
-			sum_y += grid->coords[i][j]->y;
-			sum_z += grid->coords[i][j++]->z;
-		}
-		i++;
-	}
-	grid->centre.x = sum_x / total;
-	grid->centre.y = sum_y / total;
-	grid->centre.z = sum_z / total;
 }
 
 static void	init_grid_coords(t_grid_data *grid, t_mlx_data *mlx)
 {
 	int 	i;
 	int 	j;
-	float	box_len;
-	float	box_width;
 	
-	box_len = (WIN_LEN / 2) / grid->len - 1;
-	box_width = (WIN_HEIGHT / 2) / grid->width - 1;
 	if (!(grid->coords = malloc(sizeof(t_coord **) * grid->width)))
 		malloc_error(mlx);
 	i = 0;
@@ -84,9 +52,35 @@ static void	init_grid_coords(t_grid_data *grid, t_mlx_data *mlx)
 		{
 			if (!(grid->coords[i][j] = malloc(sizeof(t_coord))))
 				malloc_error(mlx);
-			grid->coords[i][j]->x = WIN_LEN / 4 + (box_len * j);
-			grid->coords[i][j]->y = WIN_HEIGHT / 4 + (box_width * i);
-			grid->coords[i][j]->z = convert_dec(mlx->file_elements[i][j]) * 4;
+			grid->coords[i][j]->x = j;
+			grid->coords[i][j]->y = i;
+			grid->coords[i][j]->z = convert_dec(mlx->file_data[i][j]);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	init_grid_scale(t_grid_data *grid)
+{
+	int i;
+	int j;
+
+	grid->range.x_min = 0;
+	grid->range.x_max = grid->len;
+	grid->range.y_min = 0;
+	grid->range.y_max = grid->width;
+	grid->range.z_min = grid->range.z_max = grid->coords[0][0]->z;
+	i = 0;
+	while (i < grid->width)
+	{
+		j = 0;
+		while (j < grid->len)
+		{
+			if (grid->coords[i][j]->z < grid->range.z_min)
+				grid->range.z_min = grid->coords[i][j]->z;
+			if (grid->coords[i][j]->z > grid->range.z_max)
+				grid->range.z_max = grid->coords[i][j]->z;
 			j++;
 		}
 		i++;
@@ -95,9 +89,11 @@ static void	init_grid_coords(t_grid_data *grid, t_mlx_data *mlx)
 
 void	init_grid_data(t_mlx_data *mlx)
 {
-	mlx->grid.width = ft_2darr_len((void *)(mlx->file_elements)); 
-	mlx->grid.len = ft_2darr_len((void *)(mlx->file_elements[0]));
+	mlx->grid.width = ft_2darr_len((void *)(mlx->file_data)); 
+	mlx->grid.len = ft_2darr_len((void *)(mlx->file_data[0]));
 	init_grid_coords(&mlx->grid, mlx);
-	init_centre(&mlx->grid);
+	init_grid_scale(&mlx->grid);
+	scale_img(&mlx->grid);
+	find_img_centre(&mlx->grid);
 	recentre_img(&mlx->grid);
 }

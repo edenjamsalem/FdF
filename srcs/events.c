@@ -45,9 +45,6 @@ int	key_event(int keysym, t_mlx_data *mlx)
 
 int	close_window(t_mlx_data *mlx)
 {
-	mlx_destroy_image(mlx->ptr, mlx->img.ptr);
-	mlx_destroy_window(mlx->ptr, mlx->win);
-	mlx_destroy_display(mlx->ptr);
 	free_mem(mlx);
 	exit(EXIT_SUCCESS);
 }

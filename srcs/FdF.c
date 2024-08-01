@@ -19,7 +19,7 @@ int	main(int argc, char **argv)
 	init_mlx_data(&mlx);
 	init_img_data(&mlx.img, &mlx);
 	file_contents = read_file(fd, &mlx);
-	mlx.file_elements = parse_file(file_contents, &mlx);
+	mlx.file_data = parse_file(file_contents, &mlx);
 	init_grid_data(&mlx);
 	isometric_projection(&mlx.grid);
 	draw_model(&mlx);

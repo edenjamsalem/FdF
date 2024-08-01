@@ -50,23 +50,23 @@ char	***parse_file(char *file_contents, t_mlx_data *mlx)
 	int		row_count;
 	int		row_len;
 	char	**rows;
-	char	***file_elements;
+	char	***file_data;
 
 	rows = ft_split(file_contents, '\n');
 	row_count = ft_2darr_len((void *)rows);
-	file_elements = malloc(sizeof(char **) * (row_count + 1));
-	if (!file_elements)
+	file_data = malloc(sizeof(char **) * (row_count + 1));
+	if (!file_data)
 		malloc_error(mlx);
 	i = 0;
 	while (i < row_count)
 	{
-		file_elements[i] = ft_split(rows[i], ' ');
+		file_data[i] = ft_split(rows[i], ' ');
 		free(rows[i++]);
 	}
-	file_elements[i] = NULL;
+	file_data[i] = NULL;
 	free(file_contents);
 	free(rows);
-	row_len = ft_2darr_len((void *)file_elements[0]);
-	return (file_elements);
+	row_len = ft_2darr_len((void *)file_data[0]);
+	return (file_data);
 }
 

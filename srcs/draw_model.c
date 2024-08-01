@@ -60,5 +60,5 @@ void	draw_model(t_mlx_data *mlx)
 	draw_horizontal_lines(&mlx->img, &mlx->grid);
 	draw_vertical_lines(&mlx->img, &mlx->grid);
 	mlx_put_image_to_window(mlx->ptr, mlx->win, mlx->img.ptr, 0, 0);
-	init_centre(&mlx->grid);
+	find_img_centre(&mlx->grid);
 }

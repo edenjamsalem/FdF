@@ -1,12 +1,5 @@
 #include "../FdF.h"
 
-static bool within_screen(int x, int y)
-{
-	if (x > 0 && x < WIN_LEN && y > 0 && y < WIN_HEIGHT)
-		return (true);
-	return (false);
-}
-
 static void	put_pixel(t_img *img, t_coord *coord)
 {
 	char	*dst;
@@ -18,7 +11,7 @@ static void	put_pixel(t_img *img, t_coord *coord)
 	}
 }
 
-static void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line)
+static void	inc_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line)
 {
 	int		offset;
 	double	delta;
@@ -42,7 +35,7 @@ static void	increment_by_y(t_img *img, t_coord *start, t_coord *end, t_line *lin
 	}
 }
 
-static void	increment_by_x(t_img *img, t_coord *start, t_coord *end, t_line *line)
+static void	inc_by_x(t_img *img, t_coord *start, t_coord *end, t_line *line)
 {
 	int		offset;
 	double	delta;
@@ -78,15 +71,15 @@ void	draw_line(t_img *img, t_coord *start, t_coord *end)
 	if (fabs(line.dx) > fabs(line.dy))
 	{
 		if (start->x < end->x)
-			increment_by_x(img, start, end, &line);
+			inc_by_x(img, start, end, &line);
 		else
-			increment_by_x(img, end, start, &line);
+			inc_by_x(img, end, start, &line);
 	}
 	else
 	{
 		if (start->y < end->y)
-			increment_by_y(img, start, end, &line);
+			inc_by_y(img, start, end, &line);
 		else
-			increment_by_y(img, end, start, &line);
+			inc_by_y(img, end, start, &line);
 	}
 }

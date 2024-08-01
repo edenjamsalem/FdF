@@ -74,12 +74,24 @@ typedef struct	s_coord
 	double	z;
 }				t_coord;
 
+typedef struct	s_scale
+{	
+	double	x_min;
+	double	x_max;
+	double	y_min;
+	double	y_max;
+	double	z_min;
+	double	z_max;
+}				t_scale;
+
 typedef struct	s_grid_data
 {
 	int		width;
 	int		len;
 	t_coord centre;
 	t_coord	***coords;
+	t_scale	range;
+
 }				t_grid_data;
 
 typedef struct	s_mlx_data
@@ -87,7 +99,7 @@ typedef struct	s_mlx_data
 	void	*ptr;
 	void	*win;
 	t_img	img;
-	char	***file_elements;
+	char	***file_data;
 	t_grid_data	grid;
 }				t_mlx_data;
 
@@ -103,7 +115,7 @@ void	draw_line(t_img *img, t_coord *start, t_coord *end);
 
 void	draw_model(t_mlx_data *mlx);
 
-void	free_file(char ***file_elements);
+void	free_file(char ***file_data);
 
 void	free_coords(t_grid_data *grid);
 
@@ -119,7 +131,7 @@ void	init_img_data(t_img *img, t_mlx_data *mlx);
 
 void	init_grid_data(t_mlx_data *mlx);
 
-void	init_centre(t_grid_data *grid);
+void	find_img_centre(t_grid_data *grid);
 
 void	recentre_img(t_grid_data *grid);
 
@@ -133,6 +145,9 @@ void	free_mem(t_mlx_data *mlx);
 
 void	clear_img(t_mlx_data *mlx);
 
+void	scale_img(t_grid_data *grid);
+
+bool	within_screen(int x, int y);
 
 
 void	rot_x_axis(int angle, t_grid_data *grid);

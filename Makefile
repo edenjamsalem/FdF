@@ -23,7 +23,8 @@ SRCS =	$(SRCDIR)/FdF.c \
 		$(SRCDIR)/init_fns.c \
 		$(SRCDIR)/permutations.c \
 		$(SRCDIR)/file_handling.c \
-		$(SRCDIR)/free_fns.c
+		$(SRCDIR)/free_fns.c \
+		$(SRCDIR)/img_fns.c
 
 OBJDIR = ./build
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)

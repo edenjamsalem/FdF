@@ -19,37 +19,9 @@ double convert_dec(char *nbr)
 	return ((double)ft_atoi(nbr));
 }
 
-void	recentre_img(t_grid_data *grid)
+bool within_screen(int x, int y)
 {
-	t_coord centre_screen;
-	int		dx;
-	int		dy;
-
-	centre_screen.x = WIN_LEN / 2;
-	centre_screen.y = WIN_HEIGHT / 2;
-	dx = grid->centre.x - centre_screen.x;
-	dy = grid->centre.y - centre_screen.y;
-	shift('x', -dx, grid);	
-	shift('y', -dy, grid);	
+	if (x > 0 && x < WIN_LEN && y > 0 && y < WIN_HEIGHT)
+		return (true);
+	return (false);
 }
-
-void	clear_img(t_mlx_data *mlx)
-{
-	int	x;
-	int	y;
-	char *dst;
-
-	y = 0;
-	while (y < WIN_HEIGHT)
-	{
-		x = 0;
-		while (x < WIN_LEN)
-		{
-			dst = find_offset(x, y, &mlx->img);
-			*((unsigned int *)dst) = 0x00000000;
-			x++;
-		}
-		y++;
-	}
-}
-

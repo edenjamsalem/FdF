@@ -7,21 +7,21 @@ void	malloc_error(t_mlx_data *mlx)
 	exit(EXIT_FAILURE);
 }
 
-void	free_file(char ***file_elements)
+void	free_file(char ***file_data)
 {
 	int			i;
 	int			j;
 	
 	i = 0;
-	while (file_elements[i])
+	while (file_data[i])
 	{
 		j = 0;
-		while (file_elements[i][j])
-			free(file_elements[i][j++]);
-		free(file_elements[i]);
+		while (file_data[i][j])
+			free(file_data[i][j++]);
+		free(file_data[i]);
 		i++;
 	}
-	free(file_elements);
+	free(file_data);
 }
 
 void	free_coords(t_grid_data *grid)
@@ -43,7 +43,10 @@ void	free_coords(t_grid_data *grid)
 
 void	free_mem(t_mlx_data *mlx)
 {
-	free(mlx->ptr);
-	free_file(mlx->file_elements);
+	mlx_destroy_image(mlx->ptr, mlx->img.ptr);
+	mlx_destroy_window(mlx->ptr, mlx->win);
+	mlx_destroy_display(mlx->ptr);
+	free_file(mlx->file_data);
 	free_coords(&mlx->grid);
+	free(mlx->ptr);
 }
