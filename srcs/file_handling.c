@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   file_handling.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/02 11:26:10 by eamsalem          #+#    #+#             */
+/*   Updated: 2024/08/02 11:26:34 by eamsalem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../FdF.h"
 
 static char	*ft_strjoin_free(char *s1, char *s2, t_mlx_data *mlx)
@@ -29,7 +41,7 @@ static char	*ft_strjoin_free(char *s1, char *s2, t_mlx_data *mlx)
 char	*read_file(int fd, t_mlx_data *mlx)
 {
 	char	*line;
-	char 	*file_contents;
+	char	*file_contents;
 
 	file_contents = malloc(sizeof(char));
 	if (!file_contents)
@@ -39,7 +51,7 @@ char	*read_file(int fd, t_mlx_data *mlx)
 	{
 		line = get_next_line(fd);
 		if (!line)
-			return (file_contents); 
+			return (file_contents);
 		file_contents = ft_strjoin_free(file_contents, line, mlx);
 	}
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_fns.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/02 11:27:17 by eamsalem          #+#    #+#             */
+/*   Updated: 2024/08/02 11:27:19 by eamsalem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../FdF.h"
 
 void	malloc_error(t_mlx_data *mlx)
@@ -9,9 +21,9 @@ void	malloc_error(t_mlx_data *mlx)
 
 void	free_file(char ***file_data)
 {
-	int			i;
-	int			j;
-	
+	int	i;
+	int	j;
+
 	i = 0;
 	while (file_data[i])
 	{
@@ -26,9 +38,9 @@ void	free_file(char ***file_data)
 
 void	free_coords(t_grid_data *grid)
 {
-	int 	i;
-	int 	j;
-	
+	int	i;
+	int	j;
+
 	i = 0;
 	while (i < grid->width)
 	{

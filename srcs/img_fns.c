@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   img_fns.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/02 11:28:46 by eamsalem          #+#    #+#             */
+/*   Updated: 2024/08/02 11:29:16 by eamsalem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../FdF.h"
 
 void	recentre_img(t_grid_data *grid)
 {
-	t_coord centre_screen;
+	t_coord	centre_screen;
 	int		dx;
 	int		dy;
 
@@ -10,15 +22,15 @@ void	recentre_img(t_grid_data *grid)
 	centre_screen.y = WIN_HEIGHT / 2;
 	dx = grid->centre.x - centre_screen.x;
 	dy = grid->centre.y - centre_screen.y;
-	shift('x', -dx, grid);	
-	shift('y', -dy, grid);	
+	shift('x', -dx, grid);
+	shift('y', -dy, grid);
 }
 
 void	clear_img(t_mlx_data *mlx)
 {
-	int	x;
-	int	y;
-	char *dst;
+	int		x;
+	int		y;
+	char	*dst;
 
 	y = 0;
 	while (y < WIN_HEIGHT)
@@ -36,8 +48,8 @@ void	clear_img(t_mlx_data *mlx)
 
 static void	normalize(t_coord *coord, t_scale *range)
 {
-	double z_min;
-	double z_max;
+	double	z_min;
+	double	z_max;
 
 	z_min = range->z_min;
 	z_max = range->z_max;
@@ -48,9 +60,9 @@ static void	normalize(t_coord *coord, t_scale *range)
 
 void	scale_img(t_grid_data *grid)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = 0;
 	while (i < grid->width)
 	{
@@ -74,10 +86,10 @@ void	find_img_centre(t_grid_data *grid)
 	double	sum_x;
 	double	sum_y;
 	double	sum_z;
-	int		total;
 
-	total = grid->width * grid->len;
-	sum_x = sum_y = sum_z = 0;
+	sum_x = 0;
+	sum_y = 0;
+	sum_z = 0;
 	i = 0;
 	while (i < grid->width)
 	{
@@ -90,7 +102,7 @@ void	find_img_centre(t_grid_data *grid)
 		}
 		i++;
 	}
-	grid->centre.x = sum_x / total;
-	grid->centre.y = sum_y / total;
-	grid->centre.z = sum_z / total;
+	grid->centre.x = sum_x / (grid->width * grid->len);
+	grid->centre.y = sum_y / (grid->width * grid->len);
+	grid->centre.z = sum_z / (grid->width * grid->len);
 }

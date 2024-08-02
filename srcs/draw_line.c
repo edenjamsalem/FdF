@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_line.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/02 11:22:57 by eamsalem          #+#    #+#             */
+/*   Updated: 2024/08/02 11:23:03 by eamsalem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../FdF.h"
 
 static void	put_pixel(t_img *img, t_coord *coord, int colour)
@@ -17,20 +29,18 @@ static void	inc_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line)
 	double		delta;
 	int			threshold;
 	int			threshold_inc;
-	int			step_count;
-	int			total_steps;
 	t_colour	colour;
-	float		t;
+	double		t;
+	double		t_step;
 
 	delta = fabs(line->dx) * 2;
 	threshold = fabs(line->dy);
 	threshold_inc = fabs(line->dy) * 2;
-	total_steps = end->y - start->y;
-	step_count = 0;
+	t_step = 1 / (end->y - start->y);
+	t = 0;
 	offset = 0;
 	while (start->y <= end->y)
 	{
-		t = (float)step_count / (float)total_steps;
 		colour = terp_colour(start->colour, end->colour, t);
 		put_pixel(img, start, rgb_to_hex(colour));
 		offset += delta;
@@ -40,7 +50,7 @@ static void	inc_by_y(t_img *img, t_coord *start, t_coord *end, t_line *line)
 			threshold += threshold_inc;
 		}
 		start->y++;
-		step_count++;
+		t += t_step;
 	}
 }
 
@@ -50,20 +60,18 @@ static void	inc_by_x(t_img *img, t_coord *start, t_coord *end, t_line *line)
 	double		delta;
 	int			threshold;
 	int			threshold_inc;
-	int			step_count;
-	int			total_steps;
 	t_colour	colour;
-	float		t;
-	
+	double		t;
+	double		t_step;
+
 	delta = fabs(line->dy) * 2;
 	threshold = fabs(line->dx);
 	threshold_inc = fabs(line->dx) * 2;
-	total_steps = end->x - start->x;
-	step_count = 0;
+	t_step = 1 / (end->x - start->x);
+	t = 0;
 	offset = 0;
 	while (start->x <= end->x)
 	{
-		t =  (float)step_count / (float)total_steps;
 		colour = terp_colour(start->colour, end->colour, t);
 		put_pixel(img, start, rgb_to_hex(colour));
 		offset += delta;
@@ -73,7 +81,7 @@ static void	inc_by_x(t_img *img, t_coord *start, t_coord *end, t_line *line)
 			threshold += threshold_inc;
 		}
 		start->x++;
-		step_count++;
+		t += t_step;
 	}
 }
 
@@ -81,8 +89,8 @@ void	draw_line(t_img *img, t_coord *start, t_coord *end)
 {
 	t_line	line;
 
-	line.dx = end->x - start->x;	
-	line.dy = end->y - start->y;	
+	line.dx = end->x - start->x;
+	line.dy = end->y - start->y;
 	line.step = 1;
 	if (!(line.dy < 0 && line.dx < 0) && (line.dx < 0 || line.dy < 0))
 		line.step = -1;

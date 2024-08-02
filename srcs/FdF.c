@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   FdF.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/02 11:25:39 by eamsalem          #+#    #+#             */
+/*   Updated: 2024/08/02 11:42:11 by eamsalem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../FdF.h"
 
 //	TODO:
@@ -9,7 +21,7 @@ int	main(int argc, char **argv)
 {
 	t_mlx_data	mlx;
 	int			fd;
-	char 		*file_contents;
+	char		*file_contents;
 
 	if (argc != 2)
 		return (1);
@@ -23,8 +35,8 @@ int	main(int argc, char **argv)
 	init_grid_data(&mlx);
 	isometric_projection(&mlx.grid);
 	draw_model(&mlx);
-	mlx_hook(mlx.win, KEY_PRS_EVT, KEY_PRS_MSK, key_event, &mlx);
-	mlx_hook(mlx.win, BTN_PRS_EVT, BTN_PRS_MSK, mouse_event, &mlx);
-	mlx_hook(mlx.win, DESTROY_EVT, STRUCT_NOTIFY_MSK, close_window, &mlx);
-	mlx_loop(mlx.ptr);	
+	mlx_hook(mlx.win, KEY_PRS_EVT, 1L << 0, key_event, &mlx);
+	mlx_hook(mlx.win, BTN_PRS_EVT, 1L << 2, mouse_event, &mlx);
+	mlx_hook(mlx.win, DESTROY_EVT, 1L << 17, close_window, &mlx);
+	mlx_loop(mlx.ptr);
 }

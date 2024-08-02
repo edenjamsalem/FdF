@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_fns.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/02 11:29:46 by eamsalem          #+#    #+#             */
+/*   Updated: 2024/08/02 11:33:21 by eamsalem         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../FdF.h"
 
 void	init_mlx_data(t_mlx_data *mlx)
 {
-	if (!(mlx->ptr = mlx_init()))
+	mlx->ptr = mlx_init();
+	if (!mlx->ptr)
 		exit(EXIT_FAILURE);
 	mlx->win = mlx_new_window(mlx->ptr, WIN_LEN, WIN_HEIGHT, "FdF");
 	if (!mlx->win)
@@ -37,20 +50,23 @@ void	init_img_data(t_img *img, t_mlx_data *mlx)
 
 static void	init_grid_coords(t_grid_data *grid, t_mlx_data *mlx)
 {
-	int 	i;
-	int 	j;
-	
-	if (!(grid->coords = malloc(sizeof(t_coord **) * grid->width)))
+	int	i;
+	int	j;
+
+	grid->coords = malloc(sizeof(t_coord **) * grid->width);
+	if (!grid->coords)
 		malloc_error(mlx);
 	i = 0;
 	while (i < grid->width)
 	{
-		if (!(grid->coords[i] = malloc(sizeof(t_coord *) * grid->len)))
+		grid->coords[i] = malloc(sizeof(t_coord *) * grid->len);
+		if (!grid->coords[i])
 			malloc_error(mlx);
 		j = 0;
 		while (j < grid->len)
 		{
-			if (!(grid->coords[i][j] = malloc(sizeof(t_coord))))
+			grid->coords[i][j] = malloc(sizeof(t_coord));
+			if (!grid->coords[i][j])
 				malloc_error(mlx);
 			grid->coords[i][j]->x = j;
 			grid->coords[i][j]->y = i;
@@ -63,14 +79,15 @@ static void	init_grid_coords(t_grid_data *grid, t_mlx_data *mlx)
 
 void	init_grid_scale(t_grid_data *grid)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	grid->range.x_min = 0;
 	grid->range.x_max = grid->len;
 	grid->range.y_min = 0;
 	grid->range.y_max = grid->width;
-	grid->range.z_min = grid->range.z_max = grid->coords[0][0]->z;
+	grid->range.z_min = grid->coords[0][0]->z;
+	grid->range.z_max = grid->coords[0][0]->z;
 	i = 0;
 	while (i < grid->width)
 	{
@@ -85,16 +102,6 @@ void	init_grid_scale(t_grid_data *grid)
 		}
 		i++;
 	}
-}
-
-float	find_t(double z, t_grid_data *grid)
-{
-	double z_min;
-	double z_max;
-
-	z_min = grid->range.z_min;
-	z_max = grid->range.z_max;
-	return ((z - z_min) / (z_max - z_min));
 }
 
 void	init_grid_colours(t_grid_data *grid)
@@ -123,7 +130,7 @@ void	init_grid_colours(t_grid_data *grid)
 
 void	init_grid_data(t_mlx_data *mlx)
 {
-	mlx->grid.width = ft_2darr_len((void *)(mlx->file_data)); 
+	mlx->grid.width = ft_2darr_len((void *)(mlx->file_data));
 	mlx->grid.len = ft_2darr_len((void *)(mlx->file_data[0]));
 	init_grid_coords(&mlx->grid, mlx);
 	init_grid_scale(&mlx->grid);
