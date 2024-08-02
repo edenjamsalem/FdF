@@ -6,7 +6,7 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:41:10 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:26:24 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:40:27 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,7 @@
 #define SCROLL_UP		4
 #define SCROLL_DOWN	5
 
-
-// Colours
+// COLOURS
 #define WHITE	0xFFF8F8FF
 #define RED	0xFFFF0000
 #define GREEN	0xFF00FF00
@@ -182,5 +181,3 @@ t_colour	hex_to_rgb(int hex);
 t_colour	terp_colour(t_colour color_1, t_colour color_2, float t);
 
 double		find_t(double z, t_grid_data *grid);
-
-
