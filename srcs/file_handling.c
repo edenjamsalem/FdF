@@ -6,35 +6,34 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:26:10 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 11:26:34 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:38:13 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../FdF.h"
 
-static char	*ft_strjoin_free(char *s1, char *s2, t_mlx_data *mlx)
+static char	*ft_strjoin_free(char *file_contents, char *line, t_mlx_data *mlx)
 {
 	char	*new_str;
 	int		tot_len;
 	int		i;
 	int		j;
 
-	tot_len = ft_strlen(s1) + ft_strlen(s2);
+	tot_len = ft_strlen(file_contents) + ft_strlen(line);
 	new_str = malloc(sizeof(char) * (tot_len + 1));
 	if (!new_str)
 		malloc_error(mlx);
 	i = 0;
-	while (s1[i])
+	while (file_contents[i])
 	{
-		new_str[i] = s1[i];
+		new_str[i] = file_contents[i];
 		i++;
 	}
 	j = 0;
-	while (s2[j])
-		new_str[i++] = s2[j++];
+	while (line[j])
+		new_str[i++] = line[j++];
 	new_str[i] = '\0';
-	free(s1);
-	free(s2);
+	free(file_contents);
 	return (new_str);
 }
 
@@ -53,6 +52,7 @@ char	*read_file(int fd, t_mlx_data *mlx)
 		if (!line)
 			return (file_contents);
 		file_contents = ft_strjoin_free(file_contents, line, mlx);
+		free(line);
 	}
 }
 
@@ -60,7 +60,6 @@ char	***parse_file(char *file_contents, t_mlx_data *mlx)
 {
 	int		i;
 	int		row_count;
-	int		row_len;
 	char	**rows;
 	char	***file_data;
 
@@ -73,12 +72,11 @@ char	***parse_file(char *file_contents, t_mlx_data *mlx)
 	while (i < row_count)
 	{
 		file_data[i] = ft_split(rows[i], ' ');
-		free(rows[i++]);
+		free(rows[i]);
+		i++;
 	}
 	file_data[i] = NULL;
 	free(file_contents);
 	free(rows);
-	row_len = ft_2darr_len((void *)file_data[0]);
 	return (file_data);
 }
-

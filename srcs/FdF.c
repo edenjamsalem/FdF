@@ -6,7 +6,7 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:25:39 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:20:43 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:37:25 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@ void	isometric_projection(t_grid_data *grid)
 	rotate('z', 30, grid);
 }
 
+void	init_grid_data(t_mlx_data *mlx)
+{
+	mlx->grid.width = ft_2darr_len((void *)(mlx->file_data));
+	mlx->grid.len = ft_2darr_len((void *)(mlx->file_data[0]));
+	init_grid_coords(&mlx->grid, mlx);
+	init_grid_scale(&mlx->grid);
+	init_grid_colours(&mlx->grid);
+	scale_img(&mlx->grid);
+	find_img_centre(&mlx->grid);
+	recentre_img(&mlx->grid);
+}
 
 int	main(int argc, char **argv)
 {

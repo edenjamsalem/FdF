@@ -6,7 +6,7 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:29:46 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 11:33:21 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:37:33 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,16 +126,4 @@ void	init_grid_colours(t_grid_data *grid)
 		}
 		i++;
 	}
-}
-
-void	init_grid_data(t_mlx_data *mlx)
-{
-	mlx->grid.width = ft_2darr_len((void *)(mlx->file_data));
-	mlx->grid.len = ft_2darr_len((void *)(mlx->file_data[0]));
-	init_grid_coords(&mlx->grid, mlx);
-	init_grid_scale(&mlx->grid);
-	init_grid_colours(&mlx->grid);
-	scale_img(&mlx->grid);
-	find_img_centre(&mlx->grid);
-	recentre_img(&mlx->grid);
 }
