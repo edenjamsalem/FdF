@@ -6,12 +6,12 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:41:10 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:45:35 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 14:54:03 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx_linux/mlx.h"
-#include "../libft/libft.h"
+#include "libft/libft.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>

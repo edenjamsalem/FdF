@@ -6,7 +6,7 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:28:46 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:29:40 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 14:58:11 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,10 @@ static void	normalize(t_coord *coord, t_scale *range)
 	z_max = range->z_max;
 	coord->x = (coord->x - range->x_min) / range->x_max - range->x_min;
 	coord->y = (coord->y - range->y_min) / range->y_max - range->y_min;
-	coord->z = (coord->z - range->z_min) / range->z_max - range->z_min;
+	if (z_min == 0 && z_max == 0)
+		coord->z = 0;
+	else
+		coord->z = (coord->z - range->z_min) / range->z_max - range->z_min;
 }
 
 void	scale_img(t_grid_data *grid)

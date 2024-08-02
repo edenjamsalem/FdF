@@ -6,7 +6,7 @@
 #    By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 14:04:43 by eamsalem          #+#    #+#              #
-#    Updated: 2024/08/02 12:26:49 by eamsalem         ###   ########.fr        #
+#    Updated: 2024/08/02 14:53:18 by eamsalem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 MLXDIR = mlx_linux
 MLXLIB = $(MLXDIR)/libmlx_Linux.a
 
-LIBFTDIR = ../libft
+LIBFTDIR = libft
 LIBFT = $(LIBFTDIR)/libft.a
 
 all: $(OBJDIR) $(NAME) $(MLXLIB) $(LIBFT)
