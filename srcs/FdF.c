@@ -6,20 +6,22 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:25:39 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:37:25 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:47:55 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../FdF.h"
-
-//	TODO:
-// 	- add colour gradient
 
 void	isometric_projection(t_grid_data *grid)
 {
 	rotate('x', 30, grid);
 	rotate('y', -30, grid);
 	rotate('z', 30, grid);
+}
+
+void	side_projection(t_grid_data *grid)
+{
+	rotate('x', 90, grid);
 }
 
 void	init_grid_data(t_mlx_data *mlx)
@@ -31,7 +33,6 @@ void	init_grid_data(t_mlx_data *mlx)
 	init_grid_colours(&mlx->grid);
 	scale_img(&mlx->grid);
 	find_img_centre(&mlx->grid);
-	recentre_img(&mlx->grid);
 }
 
 int	main(int argc, char **argv)
@@ -51,6 +52,8 @@ int	main(int argc, char **argv)
 	mlx.file_data = parse_file(file_contents, &mlx);
 	init_grid_data(&mlx);
 	isometric_projection(&mlx.grid);
+//	side_projection(&mlx.grid);
+	recentre_img(&mlx.grid);
 	draw_model(&mlx);
 	mlx_hook(mlx.win, KEY_PRS_EVT, 1L << 0, key_event, &mlx);
 	mlx_hook(mlx.win, BTN_PRS_EVT, 1L << 2, mouse_event, &mlx);

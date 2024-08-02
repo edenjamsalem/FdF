@@ -6,7 +6,7 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:41:10 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:40:27 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:45:35 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,12 @@ void		init_mlx_data(t_mlx_data *mlx);
 void		init_img_data(t_img *img, t_mlx_data *mlx);
 
 void		init_grid_data(t_mlx_data *mlx);
+
+void		init_grid_coords(t_grid_data *grid, t_mlx_data *mlx);
+
+void		init_grid_scale(t_grid_data *grid);
+
+void		init_grid_colours(t_grid_data *grid);
 
 void		find_img_centre(t_grid_data *grid);
 

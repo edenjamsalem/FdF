@@ -6,7 +6,7 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:29:46 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:37:33 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:45:49 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	init_img_data(t_img *img, t_mlx_data *mlx)
 	}
 }
 
-static void	init_grid_coords(t_grid_data *grid, t_mlx_data *mlx)
+void	init_grid_coords(t_grid_data *grid, t_mlx_data *mlx)
 {
 	int	i;
 	int	j;
