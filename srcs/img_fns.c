@@ -6,11 +6,39 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:28:46 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 11:29:16 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:29:40 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../FdF.h"
+
+void	find_img_centre(t_grid_data *grid)
+{
+	int		i;
+	int		j;
+	double	sum_x;
+	double	sum_y;
+	double	sum_z;
+
+	sum_x = 0;
+	sum_y = 0;
+	sum_z = 0;
+	i = 0;
+	while (i < grid->width)
+	{
+		j = 0;
+		while (j < grid->len)
+		{
+			sum_x += grid->coords[i][j]->x;
+			sum_y += grid->coords[i][j]->y;
+			sum_z += grid->coords[i][j++]->z;
+		}
+		i++;
+	}
+	grid->centre.x = sum_x / (grid->width * grid->len);
+	grid->centre.y = sum_y / (grid->width * grid->len);
+	grid->centre.z = sum_z / (grid->width * grid->len);
+}
 
 void	recentre_img(t_grid_data *grid)
 {
@@ -22,8 +50,8 @@ void	recentre_img(t_grid_data *grid)
 	centre_screen.y = WIN_HEIGHT / 2;
 	dx = grid->centre.x - centre_screen.x;
 	dy = grid->centre.y - centre_screen.y;
-	shift('x', -dx, grid);
-	shift('y', -dy, grid);
+	shift_x(-dx, grid);
+	shift_y(-dy, grid);
 }
 
 void	clear_img(t_mlx_data *mlx)
@@ -77,32 +105,4 @@ void	scale_img(t_grid_data *grid)
 		}
 		i++;
 	}
-}
-
-void	find_img_centre(t_grid_data *grid)
-{
-	int		i;
-	int		j;
-	double	sum_x;
-	double	sum_y;
-	double	sum_z;
-
-	sum_x = 0;
-	sum_y = 0;
-	sum_z = 0;
-	i = 0;
-	while (i < grid->width)
-	{
-		j = 0;
-		while (j < grid->len)
-		{
-			sum_x += grid->coords[i][j]->x;
-			sum_y += grid->coords[i][j]->y;
-			sum_z += grid->coords[i][j++]->z;
-		}
-		i++;
-	}
-	grid->centre.x = sum_x / (grid->width * grid->len);
-	grid->centre.y = sum_y / (grid->width * grid->len);
-	grid->centre.z = sum_z / (grid->width * grid->len);
 }

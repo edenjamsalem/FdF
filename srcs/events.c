@@ -6,7 +6,7 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 10:26:57 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:07:26 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:27:14 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,25 +31,25 @@ int	key_event(int keysym, t_mlx_data *mlx)
 	if (keysym == ESC_KEY)
 		close_window(mlx);
 	else if (keysym == A_KEY)
-		rot_z_axis(-2, &mlx->grid);
+		rotate('z', -2, &mlx->grid);
 	else if (keysym == D_KEY)
-		rot_z_axis(2, &mlx->grid);
+		rotate('z', 2, &mlx->grid);
 	else if (keysym == W_KEY)
-		rot_x_axis(2, &mlx->grid);
+		rotate('x', 2, &mlx->grid);
 	else if (keysym == S_KEY)
-		rot_x_axis(-2, &mlx->grid);
+		rotate('x', -2, &mlx->grid);
 	else if (keysym == Q_KEY)
-		rot_y_axis(-2, &mlx->grid);
+		rotate('y', -2, &mlx->grid);
 	else if (keysym == E_KEY)
-		rot_y_axis(2, &mlx->grid);
+		rotate('y', 2, &mlx->grid);
 	else if (keysym == RIGHT_KEY)
-		shift('x', 4, &mlx->grid);
+		shift_x(4, &mlx->grid);
 	else if (keysym == LEFT_KEY)
-		shift('x', -4, &mlx->grid);
+		shift_x(-4, &mlx->grid);
 	else if (keysym == UP_KEY)
-		shift('y', -4, &mlx->grid);
+		shift_y(-4, &mlx->grid);
 	else if (keysym == DOWN_KEY)
-		shift('y', 4, &mlx->grid);
+		shift_y(4, &mlx->grid);
 	draw_model(mlx);
 	return (0);
 }

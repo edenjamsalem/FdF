@@ -6,18 +6,11 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 10:44:51 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:04:40 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:21:16 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../FdF.h"
-
-void	isometric_projection(t_grid_data *grid)
-{
-	rot_x_axis(30, grid);
-	rot_y_axis(-30, grid);
-	rot_z_axis(30, grid);
-}
 
 static void	draw_horizontal_lines(t_img *img, t_grid_data *grid)
 {

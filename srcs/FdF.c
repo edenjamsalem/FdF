@@ -6,7 +6,7 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:25:39 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 11:42:11 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:20:43 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,13 @@
 //	TODO:
 // 	- add colour gradient
 
-//	- if there is time: add a scaling factor depending on range of z values
+void	isometric_projection(t_grid_data *grid)
+{
+	rotate('x', 30, grid);
+	rotate('y', -30, grid);
+	rotate('z', 30, grid);
+}
+
 
 int	main(int argc, char **argv)
 {

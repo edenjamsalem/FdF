@@ -6,7 +6,7 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:41:10 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:07:14 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:26:24 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,16 +161,19 @@ void		scale_img(t_grid_data *grid);
 
 bool		within_screen(int x, int y);
 
-void		rot_x_axis(int angle, t_grid_data *grid);
-	
-void		rot_y_axis(int angle, t_grid_data *grid);
+void		rotate(char axis, int angle, t_grid_data *grid);
 
-void		rot_z_axis(int angle, t_grid_data *grid);
+void		rot_x_axis(int angle, t_coord *coord, t_coord *centre);
 
-void		shift(char var, int step, t_grid_data *grid);
+void		rot_y_axis(int angle, t_coord *coord, t_coord *centre);
+
+void		rot_z_axis(int angle, t_coord *coord, t_coord *centre);
+
+void		shift_x(int step, t_grid_data *grid);
+
+void		shift_y(int step, t_grid_data *grid);
 
 void		zoom(t_grid_data *grid, double factor);
-
 
 int			rgb_to_hex(t_colour colour);
 

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eamsalem <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 14:04:43 by eamsalem          #+#    #+#              #
-#    Updated: 2024/07/07 16:36:08 by eamsalem         ###   ########.fr        #
+#    Updated: 2024/08/02 12:26:49 by eamsalem         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS =	$(SRCDIR)/FdF.c \
 		$(SRCDIR)/draw_line.c \
 		$(SRCDIR)/draw_model.c \
 		$(SRCDIR)/init_fns.c \
-		$(SRCDIR)/permutations.c \
+		$(SRCDIR)/rotation.c \
+		$(SRCDIR)/zoom_shift.c \
 		$(SRCDIR)/file_handling.c \
 		$(SRCDIR)/free_fns.c \
 		$(SRCDIR)/img_fns.c \
