@@ -6,7 +6,7 @@
 /*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:25:39 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:47:55 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/08/02 12:48:37 by eamsalem         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	main(int argc, char **argv)
 	mlx.file_data = parse_file(file_contents, &mlx);
 	init_grid_data(&mlx);
 	isometric_projection(&mlx.grid);
-//	side_projection(&mlx.grid);
 	recentre_img(&mlx.grid);
 	draw_model(&mlx);
 	mlx_hook(mlx.win, KEY_PRS_EVT, 1L << 0, key_event, &mlx);
