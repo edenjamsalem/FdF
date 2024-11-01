@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_fns.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:27:17 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:37:39 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:38:41 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	free_mem(t_mlx_data *mlx)
 {
 	mlx_destroy_image(mlx->ptr, mlx->img.ptr);
 	mlx_destroy_window(mlx->ptr, mlx->win);
-	mlx_destroy_display(mlx->ptr);
 	free_file(mlx->file_data);
 	free_coords(&mlx->grid);
 	free(mlx->ptr);

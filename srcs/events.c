@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 10:26:57 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:27:14 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/11/01 07:43:51 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@ int	key_event(int keysym, t_mlx_data *mlx)
 	if (keysym == ESC_KEY)
 		close_window(mlx);
 	else if (keysym == A_KEY)
-		rotate('z', -2, &mlx->grid);
+		rotate(Z_AXIS, -2, &mlx->grid);
 	else if (keysym == D_KEY)
-		rotate('z', 2, &mlx->grid);
+		rotate(Z_AXIS, 2, &mlx->grid);
 	else if (keysym == W_KEY)
-		rotate('x', 2, &mlx->grid);
+		rotate(X_AXIS, 2, &mlx->grid);
 	else if (keysym == S_KEY)
-		rotate('x', -2, &mlx->grid);
+		rotate(X_AXIS, -2, &mlx->grid);
 	else if (keysym == Q_KEY)
-		rotate('y', -2, &mlx->grid);
+		rotate(Y_AXIS, -2, &mlx->grid);
 	else if (keysym == E_KEY)
-		rotate('y', 2, &mlx->grid);
+		rotate(Y_AXIS, 2, &mlx->grid);
 	else if (keysym == RIGHT_KEY)
 		shift_x(4, &mlx->grid);
 	else if (keysym == LEFT_KEY)

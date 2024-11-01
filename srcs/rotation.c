@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:35:06 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:27:46 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/11/01 07:45:01 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	rot_z_axis(int angle, t_coord *coord, t_coord *centre)
 	coord->y = (x * sin_a) + (y * cos_a) + centre->y;
 }
 
-void	rotate(char axis, int angle, t_grid_data *grid)
+void	rotate(t_axis axis, int angle, t_grid_data *grid)
 {
 	int		i;
 	int		j;
@@ -68,11 +68,11 @@ void	rotate(char axis, int angle, t_grid_data *grid)
 		j = 0;
 		while (j < grid->len)
 		{
-			if (axis == 'x')
+			if (axis == X_AXIS)
 				rot_x_axis(angle, grid->coords[i][j], &grid->centre);
-			else if (axis == 'y')
+			else if (axis == Y_AXIS)
 				rot_y_axis(angle, grid->coords[i][j], &grid->centre);
-			else if (axis == 'z')
+			else if (axis == Z_AXIS)
 				rot_z_axis(angle, grid->coords[i][j], &grid->centre);
 			j++;
 		}

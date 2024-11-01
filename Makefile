@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+         #
+#    By: user <user@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/17 14:04:43 by eamsalem          #+#    #+#              #
-#    Updated: 2024/08/02 14:53:18 by eamsalem         ###   ########.fr        #
+#    Updated: 2024/09/25 19:08:58 by user             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME =	FdF 
 
-CFLAGS = -Wall -Werror -Wextra -g3
+CFLAGS = -Wall -Werror -Wextra -g3 -arch arm64
 
 SRCDIR = ./srcs
 SRCS =	$(SRCDIR)/FdF.c \
@@ -31,8 +31,8 @@ SRCS =	$(SRCDIR)/FdF.c \
 OBJDIR = ./build
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
-MLXDIR = mlx_linux
-MLXLIB = $(MLXDIR)/libmlx_Linux.a
+MLXDIR = mlx_mac
+MLXLIB = $(MLXDIR)/libmlx.a
 
 LIBFTDIR = libft
 LIBFT = $(LIBFTDIR)/libft.a
@@ -43,7 +43,7 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	cc $(CFLAGS) -I/usr/include -I$(MLXDIR) -I$(SRCDIR) -c $< -o $@
 
 $(NAME): $(MLXLIB) $(LIBFT) $(OBJDIR) $(OBJS)
-	cc $(CFLAGS) $(OBJS) $(MLXLIB) $(LIBFT) -lXext -lX11 -lm -lz -o $@
+	cc $(CFLAGS) $(OBJS) $(MLXLIB) $(LIBFT) -framework OpenGL -framework AppKit -o $@
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)

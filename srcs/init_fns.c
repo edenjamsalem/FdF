@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_fns.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:29:46 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 12:45:49 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:38:25 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	init_mlx_data(t_mlx_data *mlx)
 	mlx->win = mlx_new_window(mlx->ptr, WIN_LEN, WIN_HEIGHT, "FdF");
 	if (!mlx->win)
 	{
-		mlx_destroy_display(mlx->ptr);
 		free(mlx->ptr);
 		exit(EXIT_FAILURE);
 	}
@@ -32,7 +31,6 @@ void	init_img_data(t_img *img, t_mlx_data *mlx)
 	if (!img->ptr)
 	{
 		mlx_destroy_window(mlx->ptr, mlx->win);
-		mlx_destroy_display(mlx->ptr);
 		free(mlx->ptr);
 		exit(EXIT_FAILURE);
 	}
@@ -41,7 +39,6 @@ void	init_img_data(t_img *img, t_mlx_data *mlx)
 	if (!img->addr)
 	{
 		mlx_destroy_window(mlx->ptr, mlx->win);
-		mlx_destroy_display(mlx->ptr);
 		free(mlx->img.ptr);
 		free(mlx->ptr);
 		exit(EXIT_FAILURE);

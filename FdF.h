@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   FdF.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:41:10 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 14:54:03 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/11/01 07:46:26 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_linux/mlx.h"
+#include "mlx_mac/mlx.h"
 #include "libft/libft.h"
 #include <unistd.h>
 #include <stdio.h>
@@ -29,19 +29,19 @@
 #define DESTROY_EVT	17
 
 // KEYSYMS
-#define ESC_KEY		0xff1b
-#define A_KEY			0x0061
-#define S_KEY			0x0073
-#define D_KEY			0x0064
-#define W_KEY			0x0077
-#define Q_KEY			0x0071	
-#define E_KEY			0x0065
-#define UP_KEY			0xff52
-#define DOWN_KEY		0xff54
-#define LEFT_KEY		0xff51
-#define RIGHT_KEY		0xff53
+#define ESC_KEY			0x35
+#define A_KEY			0x00
+#define S_KEY           0x01
+#define D_KEY           0x02
+#define W_KEY			0x0D
+#define Q_KEY			0x0C
+#define E_KEY			0x0E
+#define UP_KEY			0x7E
+#define DOWN_KEY		0x7D
+#define LEFT_KEY		0x7B
+#define RIGHT_KEY		0x7C
 #define SCROLL_UP		4
-#define SCROLL_DOWN	5
+#define SCROLL_DOWN		5
 
 // COLOURS
 #define WHITE	0xFFF8F8FF
@@ -114,6 +114,12 @@ typedef struct s_mlx_data
 	t_grid_data	grid;
 }				t_mlx_data;
 
+typedef enum {
+    X_AXIS,
+    Y_AXIS,
+    Z_AXIS
+} t_axis;
+
 int			key_event(int keysym, t_mlx_data *mlx);
 
 int			mouse_event(int button, int x, int y, t_mlx_data *mlx);
@@ -166,7 +172,7 @@ void		scale_img(t_grid_data *grid);
 
 bool		within_screen(int x, int y);
 
-void		rotate(char axis, int angle, t_grid_data *grid);
+void		rotate(t_axis axis, int angle, t_grid_data *grid);
 
 void		rot_x_axis(int angle, t_coord *coord, t_coord *centre);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eamsalem <eamsalem@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user <user@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:22:57 by eamsalem          #+#    #+#             */
-/*   Updated: 2024/08/02 11:23:03 by eamsalem         ###   ########.fr       */
+/*   Updated: 2024/09/25 18:46:42 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ static void	put_pixel(t_img *img, t_coord *coord, int colour)
 {
 	char	*dst;
 
+	(void)colour;
 	if (within_screen(coord->x, coord->y))
 	{
 		dst = find_offset(coord->x, coord->y, img);
-		*((unsigned int *)dst) = colour;
+		*((unsigned int *)dst) = WHITE;
 	}
 }
 
